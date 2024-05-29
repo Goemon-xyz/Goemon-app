@@ -1,4 +1,4 @@
-rootProject.name = 'expo-starter'
+rootProject.name = 'goemon'
 
 dependencyResolutionManagement {
   versionCatalogs {
