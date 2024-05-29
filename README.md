@@ -1,16 +1,4 @@
-![Group 1](https://github.com/thirdweb-example/thirdweb-auth-express/assets/17715009/06383e68-9c65-4265-8505-e88e573443f9)
-# thirdweb expo starter
-
-This is a working example of a onchain react native app built with thirdweb and expo.
-
-It showcases the usage of:
-
-- in-app wallets using phone number, email or social logins to create a wallet for the user
-- smart accounts to sponsor gas
-- connecting to external wallets like MetaMask via WalletConnect
-- autoconnecting to the last connected wallet on launch
-- reading contract state and events
-- writing to the blockchain
+# Goemon
 
 ## Get started
 
@@ -38,6 +26,10 @@ or
 yarn android
 ```
 
+to build android do make sure JAVA is installed and is already in path properly
+also make sure to include SDK path in bashrc or zshrc if you get SDK missing error
+export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk >> .zshrc
+
 To run this app, you'll need either:
 
 - [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
@@ -48,7 +40,3 @@ To run this app, you'll need either:
 - [Documentation](https://portal.thirdweb.com/typescript/v5)
 - [Templates](https://thirdweb.com/templates)
 - [YouTube](https://www.youtube.com/c/thirdweb)
-
-## Support
-
-For help or feedback, please [visit our support site](https://thirdweb.com/support)
