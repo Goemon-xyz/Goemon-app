@@ -1,4 +1,4 @@
-import { useThemeColor } from '@/hooks/useThemeColor'
+import { useThemeColor } from '@/components/hooks/useThemeColor'
 import React from 'react'
 import { StyleSheet, TextInputProps, TextInput } from 'react-native'
 
