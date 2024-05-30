@@ -25,6 +25,7 @@ export type ThemedButtonProps = {
   iconStyle?: ImageStyle
   iconPosition?: 'left' | 'right'
   textStyle?: TextStyle
+  Color?: string
 }
 
 export function ThemedButton(props: ThemedButtonProps) {
@@ -41,12 +42,13 @@ export function ThemedButton(props: ThemedButtonProps) {
     iconStyle,
     iconPosition = 'left',
     textStyle,
+    Color,
   } = props
 
   const bgColor = useThemeColor({ light: lightColor, dark: darkColor }, 'tint')
   const textColorInverted = useThemeColor({ light: lightColor, dark: darkColor }, 'textInverted')
   const textColor = useThemeColor({ light: lightColor, dark: darkColor }, 'text')
-  const buttonTextColor = variant === 'secondary' ? textColor : textColorInverted
+  const buttonTextColor = Color
 
   return (
     <TouchableOpacity
@@ -103,7 +105,7 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: 'Poppins',
     fontSize: 16,
-    color: '#888891',
+    // color: '#888891',
   },
 })
 

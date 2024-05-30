@@ -22,6 +22,9 @@ import { ThemedInput } from '@/components/ThemedInput'
 import { createWallet } from 'thirdweb/wallets'
 import Animated, { useAnimatedRef } from 'react-native-reanimated'
 import DividerWithText from '@/components/DividerWithText'
+import { View } from 'react-native'
+import { Text } from 'react-native'
+import Footer from '@/components/Footer'
 
 export default function HomeScreen() {
   const scrollRef = useAnimatedRef<Animated.ScrollView>()
@@ -30,12 +33,11 @@ export default function HomeScreen() {
     <ThemedView style={styles.container}>
       <ThemedView style={styles.content}>
         <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16}>
-          <ThemedView style={styles.titleContainer}>
-            <ThemedText type="title" style={{ paddingBottom: 50 }}>
-              Sign in
-            </ThemedText>
-          </ThemedView>
+          {/* <ThemedView style={styles.titleContainer}>
+            <ThemedText type="title" style={{ paddingBottom: 0 }}></ThemedText>
+          </ThemedView> */}
           <ConnectSection />
+          <Footer />
         </Animated.ScrollView>
       </ThemedView>
     </ThemedView>
@@ -70,12 +72,12 @@ function ConnectSection() {
         <ThemedView style={{ gap: 16 }}>
           <ConnectWithEmail />
 
-          <ThemedView style={{ gap: 16, paddingTop: 40 }}>
-            <DividerWithText text="or" />
+          <ThemedView style={{ gap: 16, paddingTop: 30 }}>
+            <DividerWithText text="Or" />
             <ConnectWithGoogle />
           </ThemedView>
           <ThemedView style={{ gap: 16, paddingTop: 40 }}>
-            <DividerWithText text="or" />
+            <DividerWithText text="Or" />
             <ConnectWithMetamask />
           </ThemedView>
         </ThemedView>
@@ -103,9 +105,11 @@ function ConnectWithGoogle() {
     <ThemedButton
       onPress={connectInAppWallet}
       icon={require('@/assets/images/u_google.png')}
-      title="Sign in with Google"
+      title="Continue with Google"
       loading={isConnecting}
       loadingTitle="Signing in..."
+      style={styles.buttonGoogle}
+      Color="#888891"
     />
   )
 }
@@ -117,7 +121,10 @@ function ConnectWithEmail() {
   const { connect, isConnecting } = useConnect()
 
   const sendEmailCode = async () => {
-    if (!email) return
+    console.log('hello')
+    if (!email) {
+      alert('Please Enter a Email Address')
+    }
     setScreen('sending')
     await preAuthenticate({
       client,
@@ -150,13 +157,16 @@ function ConnectWithEmail() {
           value={email}
           keyboardType="email-address"
           autoCapitalize="none"
+          style={styles.emailInput}
+          Color="#888891"
         />
         <ThemedButton
           onPress={sendEmailCode}
-          style={{ backgroundColor: '#2da8ce' }}
-          title="Sign in with email"
+          title="Next"
           loading={isConnecting}
           loadingTitle="Signing in..."
+          style={styles.buttonEmail}
+          Color="#FAFAFA"
         />
       </>
     )
@@ -208,9 +218,11 @@ function ConnectWithMetamask() {
     <ThemedButton
       onPress={connectMetamask}
       icon={require('@/assets/images/u_wallet.png')}
-      title="Sign in with Metamask"
+      title="Connect Wallet"
       loading={isConnecting}
       loadingTitle="Signing in..."
+      style={styles.buttonGoogle}
+      Color="#888891"
     />
   )
 }
@@ -291,6 +303,35 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    paddingTop: 40,
+    paddingTop: 5,
+  },
+  emailInput: {
+    fontFamily: 'Poppins',
+    flex: 1,
+    flexDirection: 'row',
+    gap: 8,
+    paddingLeft: 16,
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#212124',
+    height: 50,
+  },
+  buttonEmail: {
+    fontFamily: 'Poppins',
+    flex: 1,
+    flexDirection: 'row',
+    gap: 8,
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#2DA8CE',
+    height: 50,
+    color: '#2DA8CE',
+  },
+  buttonGoogle: {
+    backgroundColor: '#212124',
+    height: 60,
+    color: '#888891',
   },
 })

@@ -27,13 +27,14 @@ const styles = StyleSheet.create({
   line: {
     flex: 1,
     height: 1,
-    backgroundColor: 'darkgray',
+    backgroundColor: '#888891',
   },
   textContainer: {
     paddingHorizontal: 2,
   },
   text: {
-    color: 'darkgray',
+    color: '#888891',
+    paddingHorizontal: 7,
   },
 })
 
