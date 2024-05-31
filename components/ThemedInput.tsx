@@ -5,6 +5,7 @@ import { StyleSheet, TextInputProps, TextInput } from 'react-native'
 export type ThemedInputProps = {
   lightColor?: string
   darkColor?: string
+  Color?: string
 } & TextInputProps
 
 export function ThemedInput(props: ThemedInputProps) {
@@ -12,7 +13,7 @@ export function ThemedInput(props: ThemedInputProps) {
   return (
     <TextInput
       style={[styles.input, { borderColor: border }]}
-      placeholderTextColor={border}
+      placeholderTextColor={props.Color}
       {...props}
     />
   )
@@ -26,9 +27,9 @@ const styles = StyleSheet.create({
     gap: 8,
     padding: 16,
     borderRadius: 6,
-    borderWidth: 1,
     borderStyle: 'solid',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#212124',
   },
 })
