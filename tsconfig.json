@@ -6,9 +6,7 @@
     "noUncheckedIndexedAccess": true,
     "jsx": "react-jsx",
     "paths": {
-      "@/*": [
-        "./*"
-      ],
+      "@/*": ["./*"]
     }
   },
   "include": [
@@ -16,10 +14,10 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
-    "react-native.config.js", 
+    "react-native.config.js",
     "app/_layout.jsx",
     "app/index.jsx",
-    "assets/images/image_assets.js"  
+    "assets/images/image_assets.js"
   ],
-"exclude": ["**/node_modules", "**/dist", "**/types", "apps/next/out", "apps/next/.next"]
+  "exclude": ["**/node_modules", "**/dist", "**/types", "apps/next/out", "apps/next/.next"]
 }
