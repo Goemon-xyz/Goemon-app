@@ -36,6 +36,25 @@ export default function RootLayout() {
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
+          <Stack.Screen
+            name="settings"
+            options={{
+              title: 'Setting',
+              headerShadowVisible: true,
+              headerTitleAlign: 'center',
+              headerStyle: {
+                backgroundColor:
+                  colorScheme === 'dark' ? 'rgba(0, 0, 0, 1)' : 'rgba(255, 255, 255, 1)',
+              },
+              headerTintColor:
+                colorScheme === 'dark' ? 'rgba(250, 250, 250, 1)' : 'rgba(0, 0, 0, 1)',
+              headerTitleStyle: {
+                fontFamily: 'Poppins',
+                fontWeight: '700',
+                fontSize: 20,
+              },
+            }}
+          />
         </Stack>
       </ThemeProvider>
     </ThirdwebProvider>
