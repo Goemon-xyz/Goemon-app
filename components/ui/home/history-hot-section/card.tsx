@@ -37,7 +37,7 @@ function Card({ data }: { data: CardData }) {
       ]}
     >
       <View style={[styles.innerContainer]}>
-        <Coin type={cardTypeState} />
+        <Coin type={cardTypeState} height={14} width={14} />
         <ThemedText style={{ fontSize: 14, fontWeight: 'bold', marginVertical: 4 }}>
           {coinNameState}
         </ThemedText>

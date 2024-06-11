@@ -1,26 +1,32 @@
-import React from "react";
-import { View } from "react-native";
-import DogecoinSVG from "./dogecoinSVG";
-import BitcoinSVG from "./bitcoinSVG";
-import EthereumSVG from "./ethcoinSVG";
+import React from 'react'
+import { View } from 'react-native'
+import DogecoinSVG from './dogecoinSVG'
+import BitcoinSVG from './bitcoinSVG'
+import EthereumSVG from './ethcoinSVG'
 
-function Coin({ type }: { type: string }) {
-  let CoinSVG;
-  switch (type) {
-    case "Bitcoin":
-      CoinSVG = BitcoinSVG;
-      break;
-    case "Ethereum":
-      CoinSVG = EthereumSVG;
-      break;
-    case "Dogecoin":
-      CoinSVG = DogecoinSVG;
-      break;
-    default:
-      CoinSVG = View; 
-  }
-
-  return <CoinSVG />;
+interface CoinPropsTypes {
+  type: string
+  height: number
+  width: number
 }
 
-export default Coin;
+function Coin({ type, height, width }: CoinPropsTypes) {
+  let CoinSVG
+  switch (type) {
+    case 'Bitcoin':
+      CoinSVG = BitcoinSVG
+      break
+    case 'Ethereum':
+      CoinSVG = EthereumSVG
+      break
+    case 'Dogecoin':
+      CoinSVG = DogecoinSVG
+      break
+    default:
+      CoinSVG = View
+  }
+
+  return <CoinSVG height={height} width={width} />
+}
+
+export default Coin
