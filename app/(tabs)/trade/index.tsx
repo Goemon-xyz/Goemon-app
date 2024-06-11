@@ -1,16 +1,15 @@
-import { ThemedText } from "@/components/ThemedText";
-import { ThemedView } from "@/components/ThemedView";
-import React from "react";
-import { View, Text, SafeAreaView } from "react-native";
+import { ThemedText } from '@/components/ThemedText'
+import { ThemedView } from '@/components/ThemedView'
+import HistoryAndHotSection from '@/components/ui/home/history-hot-section'
+import React from 'react'
+import { View, Text, SafeAreaView } from 'react-native'
 
 function Trade() {
   return (
     <SafeAreaView>
-      <ThemedView>
-        <ThemedText>trade</ThemedText>
-      </ThemedView>
+      <HistoryAndHotSection />
     </SafeAreaView>
-  );
+  )
 }
 
-export default Trade;
+export default Trade
