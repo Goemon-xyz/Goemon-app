@@ -3,9 +3,11 @@ import OpenEyeSVG from '@/assets/icons/home/wallet-balance-section/svg/open_eye'
 import { ThemedText } from '@/components/ThemedText'
 import { ThemedView } from '@/components/ThemedView'
 import { useState } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet, Button } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, Button, useColorScheme } from 'react-native'
 
 function WalletBalanceSection() {
+  const colorScheme = useColorScheme()
+  const isDark = colorScheme === 'dark'
   const [isOpen, setIsOpen] = useState(true)
   const [balance, setBalance] = useState('163,22.12')
   const [change, setChange] = useState('-123.23')
@@ -19,11 +21,17 @@ function WalletBalanceSection() {
               Total Balance
             </ThemedText>
             <TouchableOpacity onPress={() => setIsOpen(!isOpen)}>
-              {isOpen ? <OpenEyeSVG /> : <ClosedEyeSVG />}
+              {isOpen ? (
+                <OpenEyeSVG fillColor={isDark ? '#FAFAFA' : '#000000'} />
+              ) : (
+                <ClosedEyeSVG fillColor={isDark ? '#FAFAFA' : '#000000'} />
+              )}
             </TouchableOpacity>
           </View>
           <View style={styles.row}>
-            <Text style={styles.balance}>{isOpen ? balance : '**********'}</Text>
+            <Text style={[styles.balance, { color: isDark ? '#FAFAFA' : '#000000' }]}>
+              {isOpen ? balance : '**********'}
+            </Text>
             <Text style={styles.currency}>USD</Text>
           </View>
           <View style={styles.row}>
