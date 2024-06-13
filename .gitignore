@@ -24,3 +24,4 @@ expo-env.d.ts
 biome.json
 .yalc/
 yalc.lock
+.yarn
