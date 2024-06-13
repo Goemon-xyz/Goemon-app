@@ -6,8 +6,7 @@ import { View, Text, SafeAreaView } from 'react-native'
 function Portfolio() {
   return (
     <SafeAreaView>
-      <ThemedView>
-        <ThemedText>portfolio</ThemedText>
+      <ThemedView style={{ marginTop: 20 }}>
         <WalletBalanceSection />
       </ThemedView>
     </SafeAreaView>
