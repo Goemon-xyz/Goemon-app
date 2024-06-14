@@ -154,3 +154,15 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
 })
+
+{
+  /* <SettingItem IconComponent={ColorThemeSVG} title="Color Theme" isDark={isDark} RightComponent={SunSVG} />
+<SettingItem IconComponent={LocalCurrencySVG} title="Local Currency" isDark={isDark} RightComponent={RightArrowSVG} rightText="USD" />
+<SettingItem IconComponent={LanguageSVG} title="Language" isDark={isDark} RightComponent={RightArrowSVG} rightText="English" />
+<SettingItem IconComponent={PrivacySVG} title="Privacy" isDark={isDark} RightComponent={RightArrowSVG} />
+<SettingItem IconComponent={FaceIdSVG} title="Face ID" isDark={isDark} RightComponent={RightArrowSVG} />
+<SettingItem IconComponent={ShareFeedbackSVG} title="Share Feedback" isDark={isDark} RightComponent={RightArrowSVG} />
+<SettingItem IconComponent={GetHelpSVG} title="Get Help" isDark={isDark} RightComponent={RightArrowSVG} />
+<SettingItem IconComponent={PrivacyPolicySVG} title="Privacy Policy" isDark={isDark} RightComponent={RightArrowSVG} />
+<SettingItem IconComponent={TermOfServiceSVG} title="Term of Service" isDark={isDark} RightComponent={RightArrowSVG} /> */
+}
