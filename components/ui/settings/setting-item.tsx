@@ -1,47 +1,29 @@
-import { ThemedText } from '@/components/ThemedText'
 import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { ThemedText } from '@/components/ThemedText'
 
-interface SettingItemProps {
-  IconComponent: React.FC<{ isDark: boolean }>
-  title: string
-  isDark: boolean
-  RightComponent?: React.FC<{ isDark: boolean }>
-  rightText?: string
-}
-
-const SettingItem: React.FC<SettingItemProps> = ({
-  IconComponent,
-  title,
-  isDark,
-  RightComponent,
-  rightText,
-}) => {
+const SettingItem = ({ IconComponent, title, isDark, RightComponent, rightText }) => {
   return (
     <TouchableOpacity>
       <View style={styles.row}>
         <View style={styles.innerRow}>
-          <ColorThemeSVG isDark={isDark} />
-          <ThemedText style={styles.text}>Color Theme</ThemedText>
+          <IconComponent isDark={isDark} />
+          <ThemedText style={styles.text}>{title}</ThemedText>
         </View>
-        <SunSVG isDark={isDark} />
+        <View style={styles.innerRow}>
+          {rightText && (
+            <ThemedText style={[styles.text, { color: 'rgba(136, 136, 145, 1)' }]}>
+              {rightText}
+            </ThemedText>
+          )}
+          <RightComponent isDark={isDark} />
+        </View>
       </View>
     </TouchableOpacity>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-  },
-
-  heading: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  innerContainer: {
-    padding: 16,
-  },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
