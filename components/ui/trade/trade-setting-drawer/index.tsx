@@ -1,16 +1,26 @@
-import MinusSVG from '@/assets/icons/trade/trade-seeting-drawer/svg/minusSVG'
-import PlusSVG from '@/assets/icons/trade/trade-seeting-drawer/svg/plusSVG'
-import React from 'react'
-import { View, Text } from 'react-native'
+import { StyleSheet, View } from 'react-native'
+import MaxSlippageSection from './max-slippage-section'
+import SelectYieldSection from './select-yield-section'
+import InfoSection from './info-section'
 
 function TradeSettingDrawer() {
   return (
     <View>
-      <Text style={{ color: '#FFF' }}>Trade Setting</Text>
-      <PlusSVG />
-      <MinusSVG />
+      <MaxSlippageSection />
+      <View style={styles.component}>
+        <SelectYieldSection />
+      </View>
+      <View style={styles.component}>
+        <InfoSection />
+      </View>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  component: {
+    marginBottom: 8,
+  },
+})
 
 export default TradeSettingDrawer
