@@ -1,100 +1,107 @@
-import React from 'react'
 import { View, StyleSheet, useColorScheme } from 'react-native'
-import SettingItem from '@/components/ui/settings/setting-item'
-import PrivacyPolicySVG from '@/assets/icons/setting/about/svg/privacy_policy'
-import TermOfServiceSVG from '@/assets/icons/setting/about/svg/term_of_service'
-import ColorThemeSVG from '@/assets/icons/setting/preference/svg/color_theme'
-import FaceIdSVG from '@/assets/icons/setting/preference/svg/face_id'
-import LanguageSVG from '@/assets/icons/setting/preference/svg/language'
-import LocalCurrencySVG from '@/assets/icons/setting/preference/svg/local_currency'
-import PrivacySVG from '@/assets/icons/setting/preference/svg/privacy'
-import SunSVG from '@/assets/icons/setting/preference/svg/sun'
-import RightArrowSVG from '@/assets/icons/setting/right_arrow'
-import GetHelpSVG from '@/assets/icons/setting/support/svg/get_help'
-import ShareFeedbackSVG from '@/assets/icons/setting/support/svg/share_feedback'
+import { SettingItem } from '@/assets/icons/setting'
+import {
+  PrivacyPolicySVG,
+  TermOfServiceSVG,
+  ColorThemeSVG,
+  FaceIdSVG,
+  LanguageSVG,
+  LocalCurrencySVG,
+  PrivacySVG,
+  SunSVG,
+  RightArrowSVG,
+  GetHelpSVG,
+  ShareFeedbackSVG,
+} from '@/assets/icons/setting'
 import { ThemedText } from '@/components/ThemedText'
-import { ThemedView } from '@/components/ThemedView'
 
-export default function Settings() {
-  const colorScheme = useColorScheme() as string | undefined
+const settingsData = [
+  {
+    IconComponent: ColorThemeSVG,
+    title: 'Color Theme',
+    RightComponent: SunSVG,
+    rightText: undefined,
+  },
+  {
+    IconComponent: LocalCurrencySVG,
+    title: 'Local Currency',
+    RightComponent: RightArrowSVG,
+    rightText: 'USD',
+  },
+  {
+    IconComponent: LanguageSVG,
+    title: 'Language',
+    RightComponent: RightArrowSVG,
+    rightText: 'English',
+  },
+  {
+    IconComponent: PrivacySVG,
+    title: 'Privacy',
+    RightComponent: RightArrowSVG,
+    rightText: undefined,
+  },
+  {
+    IconComponent: FaceIdSVG,
+    title: 'Face ID',
+    RightComponent: RightArrowSVG,
+    rightText: undefined,
+  },
+  {
+    IconComponent: ShareFeedbackSVG,
+    title: 'Share Feedback',
+    RightComponent: RightArrowSVG,
+    rightText: undefined,
+  },
+  {
+    IconComponent: GetHelpSVG,
+    title: 'Get Help',
+    RightComponent: RightArrowSVG,
+    rightText: undefined,
+  },
+  {
+    IconComponent: PrivacyPolicySVG,
+    title: 'Privacy Policy',
+    RightComponent: RightArrowSVG,
+    rightText: undefined,
+  },
+  {
+    IconComponent: TermOfServiceSVG,
+    title: 'Term of Service',
+    RightComponent: RightArrowSVG,
+    rightText: undefined,
+  },
+]
+
+const Settings = () => {
+  const colorScheme = useColorScheme()
   const isDark = colorScheme === 'dark'
+
   return (
-    <View style={[styles.container, { backgroundColor: colorScheme === 'dark' ? '#000' : '#FFF' }]}>
-      <ThemedText style={styles.heading}>Preferences</ThemedText>
-      <View style={styles.innerContainer}>
-        <SettingItem
-          IconComponent={ColorThemeSVG}
-          title="Color Theme"
-          isDark={isDark}
-          RightComponent={SunSVG}
-          rightText={undefined}
-        />
-        <SettingItem
-          IconComponent={LocalCurrencySVG}
-          title="Local Currency"
-          isDark={isDark}
-          RightComponent={RightArrowSVG}
-          rightText="USD"
-        />
-        <SettingItem
-          IconComponent={LanguageSVG}
-          title="Language"
-          isDark={isDark}
-          RightComponent={RightArrowSVG}
-          rightText="English"
-        />
-        <SettingItem
-          IconComponent={PrivacySVG}
-          title="Privacy"
-          isDark={isDark}
-          RightComponent={RightArrowSVG}
-          rightText={undefined}
-        />
-        <SettingItem
-          IconComponent={FaceIdSVG}
-          title="Face ID"
-          isDark={isDark}
-          RightComponent={RightArrowSVG}
-          rightText={undefined}
-        />
-      </View>
-      <ThemedText style={styles.heading}>Support</ThemedText>
-      <View style={styles.innerContainer}>
-        <SettingItem
-          IconComponent={ShareFeedbackSVG}
-          title="Share Feedback"
-          isDark={isDark}
-          RightComponent={RightArrowSVG}
-          rightText={undefined}
-        />
-        <SettingItem
-          IconComponent={GetHelpSVG}
-          title="Get Help"
-          isDark={isDark}
-          RightComponent={RightArrowSVG}
-          rightText={undefined}
-        />
-      </View>
-      <ThemedText style={styles.heading}>About</ThemedText>
-      <View style={styles.innerContainer}>
-        <SettingItem
-          IconComponent={PrivacyPolicySVG}
-          title="Privacy Policy"
-          isDark={isDark}
-          RightComponent={RightArrowSVG}
-          rightText={undefined}
-        />
-        <SettingItem
-          IconComponent={TermOfServiceSVG}
-          title="Term of Service"
-          isDark={isDark}
-          RightComponent={RightArrowSVG}
-          rightText={undefined}
-        />
-      </View>
+    <View style={[styles.container, { backgroundColor: isDark ? '#000' : '#FFF' }]}>
+      {renderSection('Preferences', settingsData.slice(0, 5), isDark)}
+      {renderSection('Support', settingsData.slice(5, 7), isDark)}
+      {renderSection('About', settingsData.slice(7), isDark)}
     </View>
   )
 }
+
+const renderSection = (sectionTitle, data, isDark) => (
+  <View key={sectionTitle}>
+    <ThemedText style={styles.heading}>{sectionTitle}</ThemedText>
+    <View style={styles.innerContainer}>
+      {data.map((item, index) => (
+        <SettingItem
+          key={index}
+          IconComponent={item.IconComponent}
+          title={item.title}
+          isDark={isDark}
+          RightComponent={item.RightComponent}
+          rightText={item.rightText}
+        />
+      ))}
+    </View>
+  </View>
+)
 
 const styles = StyleSheet.create({
   container: {
@@ -108,3 +115,5 @@ const styles = StyleSheet.create({
     padding: 16,
   },
 })
+
+export default Settings
