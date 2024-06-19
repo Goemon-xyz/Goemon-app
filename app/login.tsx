@@ -25,63 +25,184 @@ import DividerWithText from '@/components/DividerWithText'
 import { View } from 'react-native'
 import { Text } from 'react-native'
 import Footer from '@/components/Footer'
+import Footer2 from '@/components/Footer2'
 
 export default function HomeScreen() {
   const scrollRef = useAnimatedRef<Animated.ScrollView>()
+  const [loader, setloader] = useState(false)
 
-  return (
-    <ThemedView style={styles.container}>
-      <ThemedView style={styles.content}>
-        <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16}>
-          {/* <ThemedView style={styles.titleContainer}>
-            <ThemedText type="title" style={{ paddingBottom: 0 }}></ThemedText>
-          </ThemedView> */}
-          <ConnectSection />
-          <Footer />
-        </Animated.ScrollView>
+  function ConnectWithMetamask() {
+    const { connect, isConnecting } = useConnect()
+
+    const connectMetamask = async () => {
+      setloader(true)
+      await connect(async () => {
+        const wallet = createWallet('io.metamask')
+        await wallet.connect({
+          client,
+          chain,
+        })
+        return wallet
+      })
+      setloader(false)
+    }
+
+    return (
+      <ThemedButton
+        onPress={connectMetamask}
+        icon={require('@/assets/images/u_wallet.png')}
+        title="Connect Wallet"
+        loading={isConnecting}
+        loadingTitle="Signing in..."
+        style={styles.buttonGoogle}
+        Color="#888891"
+      />
+    )
+  }
+  function ConnectSection() {
+    const { disconnect } = useDisconnect()
+    const wallet = useActiveWallet()
+    const autoConnect = useAutoConnect({
+      client,
+      wallets: [createWallet('io.metamask'), inAppWallet()],
+    })
+    const autoConnecting = autoConnect.isLoading
+
+    if (autoConnecting) {
+      // setloader(true)
+    }
+
+    return (
+      <ThemedView style={styles.stepContainer}>
+        {wallet ? (
+          <>
+            <ConnectedSection />
+            <ThemedButton title="Log out" variant="secondary" onPress={() => disconnect(wallet)} />
+          </>
+        ) : (
+          <ThemedView style={{ gap: 16 }}>
+            <ConnectWithEmail />
+
+            <ThemedView style={{ gap: 16, paddingTop: 30 }}>
+              <DividerWithText text="Or" />
+              <ConnectWithGoogle />
+            </ThemedView>
+            <ThemedView style={{ gap: 16, paddingTop: 40 }}>
+              <DividerWithText text="Or" />
+              <ConnectWithMetamask />
+            </ThemedView>
+          </ThemedView>
+        )}
       </ThemedView>
-    </ThemedView>
-  )
-}
+    )
+  }
+  function ConnectWithEmail() {
+    const [screen, setScreen] = useState<'email' | 'sending' | 'code'>('email')
+    const [email, setEmail] = useState('')
+    const [verificationCode, setVerificationCode] = useState('')
+    const { connect, isConnecting } = useConnect()
 
-function ConnectSection() {
-  const { disconnect } = useDisconnect()
-  const wallet = useActiveWallet()
-  const autoConnect = useAutoConnect({
-    client,
-    wallets: [createWallet('io.metamask'), inAppWallet()],
-  })
-  const autoConnecting = autoConnect.isLoading
+    const sendEmailCode = async () => {
+      setloader(true)
+      console.log('hello')
+      if (!email) {
+        alert('Please Enter a Email Address')
+      }
+      setScreen('sending')
+      await preAuthenticate({
+        client,
+        strategy: 'email',
+        email,
+      })
+      setScreen('code')
+      setloader(false)
+    }
 
-  if (autoConnecting) {
+    const connectInAppWallet = async () => {
+      setloader(true)
+      if (!verificationCode || !email) return
+      await connect(async () => {
+        const wallet = inAppWallet()
+        await wallet.connect({
+          client,
+          strategy: 'email',
+          email,
+          verificationCode,
+        })
+        return wallet
+      })
+      setloader(false)
+    }
+
+    if (screen === 'email') {
+      return (
+        <>
+          <ThemedInput
+            placeholder="Enter your Email"
+            onChangeText={setEmail}
+            value={email}
+            keyboardType="email-address"
+            autoCapitalize="none"
+            style={styles.emailInput}
+            Color="#888891"
+          />
+          <ThemedButton
+            onPress={sendEmailCode}
+            title="Next"
+            loading={isConnecting}
+            loadingTitle="Signing in..."
+            style={styles.buttonEmail}
+            Color="#FAFAFA"
+          />
+        </>
+      )
+    }
+
+    if (screen === 'sending') {
+      // setloader(true)
+    }
+
     return (
       <>
-        <ActivityIndicator />
+        <ThemedInput
+          placeholder="Enter verification code"
+          onChangeText={setVerificationCode}
+          value={verificationCode}
+          keyboardType="numeric"
+        />
+        <ThemedButton
+          onPress={connectInAppWallet}
+          style={{ backgroundColor: '#2da8ce' }}
+          title="Sign in"
+          loading={isConnecting}
+          loadingTitle="Signing in..."
+        />
       </>
     )
   }
 
   return (
-    <ThemedView style={styles.stepContainer}>
-      {wallet ? (
-        <>
-          <ConnectedSection />
-          <ThemedButton title="Log out" variant="secondary" onPress={() => disconnect(wallet)} />
-        </>
-      ) : (
-        <ThemedView style={{ gap: 16 }}>
-          <ConnectWithEmail />
-
-          <ThemedView style={{ gap: 16, paddingTop: 30 }}>
-            <DividerWithText text="Or" />
-            <ConnectWithGoogle />
-          </ThemedView>
-          <ThemedView style={{ gap: 16, paddingTop: 40 }}>
-            <DividerWithText text="Or" />
-            <ConnectWithMetamask />
-          </ThemedView>
-        </ThemedView>
-      )}
+    <ThemedView style={styles.container}>
+      <ThemedView style={styles.content}>
+        <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16}>
+          {loader ? (
+            <>
+              <ActivityIndicator
+                size={100}
+                color="#2DA8CE"
+                animating={loader}
+                style={{ paddingBottom: 118, paddingTop: 200, alignItems: 'center' }}
+              />
+              <Footer2 />
+            </>
+          ) : (
+            <>
+              <ConnectSection />
+              <Footer />
+            </>
+          )}
+        </Animated.ScrollView>
+      </ThemedView>
     </ThemedView>
   )
 }
@@ -114,118 +235,86 @@ function ConnectWithGoogle() {
   )
 }
 
-function ConnectWithEmail() {
-  const [screen, setScreen] = useState<'email' | 'sending' | 'code'>('email')
-  const [email, setEmail] = useState('')
-  const [verificationCode, setVerificationCode] = useState('')
-  const { connect, isConnecting } = useConnect()
+// function ConnectWithEmail() {
+//   const [screen, setScreen] = useState<'email' | 'sending' | 'code'>('email')
+//   const [email, setEmail] = useState('')
+//   const [verificationCode, setVerificationCode] = useState('')
+//   const { connect, isConnecting } = useConnect()
 
-  const sendEmailCode = async () => {
-    console.log('hello')
-    if (!email) {
-      alert('Please Enter a Email Address')
-    }
-    setScreen('sending')
-    await preAuthenticate({
-      client,
-      strategy: 'email',
-      email,
-    })
-    setScreen('code')
-  }
+//   const sendEmailCode = async () => {
+//     console.log('hello')
+//     if (!email) {
+//       alert('Please Enter a Email Address')
+//     }
+//     setScreen('sending')
+//     await preAuthenticate({
+//       client,
+//       strategy: 'email',
+//       email,
+//     })
+//     setScreen('code')
+//   }
 
-  const connectInAppWallet = async () => {
-    if (!verificationCode || !email) return
-    await connect(async () => {
-      const wallet = inAppWallet()
-      await wallet.connect({
-        client,
-        strategy: 'email',
-        email,
-        verificationCode,
-      })
-      return wallet
-    })
-  }
+//   const connectInAppWallet = async () => {
+//     if (!verificationCode || !email) return
+//     await connect(async () => {
+//       const wallet = inAppWallet()
+//       await wallet.connect({
+//         client,
+//         strategy: 'email',
+//         email,
+//         verificationCode,
+//       })
+//       return wallet
+//     })
+//   }
 
-  if (screen === 'email') {
-    return (
-      <>
-        <ThemedInput
-          placeholder="Enter your Email"
-          onChangeText={setEmail}
-          value={email}
-          keyboardType="email-address"
-          autoCapitalize="none"
-          style={styles.emailInput}
-          Color="#888891"
-        />
-        <ThemedButton
-          onPress={sendEmailCode}
-          title="Next"
-          loading={isConnecting}
-          loadingTitle="Signing in..."
-          style={styles.buttonEmail}
-          Color="#FAFAFA"
-        />
-      </>
-    )
-  }
+//   if (screen === 'email') {
+//     return (
+//       <>
+//         <ThemedInput
+//           placeholder="Enter your Email"
+//           onChangeText={setEmail}
+//           value={email}
+//           keyboardType="email-address"
+//           autoCapitalize="none"
+//           style={styles.emailInput}
+//           Color="#888891"
+//         />
+//         <ThemedButton
+//           onPress={sendEmailCode}
+//           title="Next"
+//           loading={isConnecting}
+//           loadingTitle="Signing in..."
+//           style={styles.buttonEmail}
+//           Color="#FAFAFA"
+//         />
+//       </>
+//     )
+//   }
 
-  if (screen === 'sending') {
-    return (
-      <>
-        <ActivityIndicator />
-        <ThemedText>Sending Email verification code...</ThemedText>
-      </>
-    )
-  }
+//   if (screen === 'sending') {
+//     setloader(true)
+//   }
 
-  return (
-    <>
-      <ThemedInput
-        placeholder="Enter verification code"
-        onChangeText={setVerificationCode}
-        value={verificationCode}
-        keyboardType="numeric"
-      />
-      <ThemedButton
-        onPress={connectInAppWallet}
-        style={{ backgroundColor: '#2da8ce' }}
-        title="Sign in"
-        loading={isConnecting}
-        loadingTitle="Signing in..."
-      />
-    </>
-  )
-}
-
-function ConnectWithMetamask() {
-  const { connect, isConnecting } = useConnect()
-
-  const connectMetamask = async () => {
-    await connect(async () => {
-      const wallet = createWallet('io.metamask')
-      await wallet.connect({
-        client,
-        chain,
-      })
-      return wallet
-    })
-  }
-
-  return (
-    <ThemedButton
-      onPress={connectMetamask}
-      icon={require('@/assets/images/u_wallet.png')}
-      title="Connect Wallet"
-      loading={isConnecting}
-      loadingTitle="Signing in..."
-      style={styles.buttonGoogle}
-      Color="#888891"
-    />
-  )
-}
+//   return (
+//     <>
+//       <ThemedInput
+//         placeholder="Enter verification code"
+//         onChangeText={setVerificationCode}
+//         value={verificationCode}
+//         keyboardType="numeric"
+//       />
+//       <ThemedButton
+//         onPress={connectInAppWallet}
+//         style={{ backgroundColor: '#2da8ce' }}
+//         title="Sign in"
+//         loading={isConnecting}
+//         loadingTitle="Signing in..."
+//       />
+//     </>
+//   )
+// }
 
 function ConnectedSection() {
   const account = useActiveAccount()
