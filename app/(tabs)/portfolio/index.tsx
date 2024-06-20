@@ -1,6 +1,10 @@
 import { ThemedText } from '@/components/ThemedText'
 import { ThemedView } from '@/components/ThemedView'
+
 import WalletBalanceSection from '@/components/ui/home/wallet-balance-section'
+
+import React from 'react'
+
 import { View, Text, SafeAreaView } from 'react-native'
 
 function Portfolio() {
