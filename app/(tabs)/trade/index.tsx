@@ -1,19 +1,46 @@
-import React, { useRef } from 'react'
-import { View, Button } from 'react-native'
-import CustomBottomSheetModal from '@/components/ui/BottomDrawer/CustomBottomSheetModal'
-import { BottomSheetModal } from '@gorhom/bottom-sheet'
+import { StyleSheet, TouchableOpacity, View, useColorScheme, Text } from 'react-native'
+import React, { useCallback, useRef } from 'react'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import BottomSheet, { BottomSheetRefProps } from '@/components/ui/BottomDrawer/BottomSheet'
+import TradeSettingDrawer from '@/components/ui/trade/trade-setting-drawer'
 
-function Trade() {
-  const bottomSheetRef = useRef<BottomSheetModal>(null)
+export default function Trade() {
+  const isDark = useColorScheme() === 'dark'
 
-  const handlePresentModalPress = () => bottomSheetRef.current?.present()
+  const ref = useRef<BottomSheetRefProps>(null)
+
+  const onPress = useCallback(() => {
+    const isActive = ref?.current?.isActive()
+    if (isActive) {
+      ref?.current?.scrollTo(0)
+    } else {
+      ref?.current?.scrollTo(-200)
+    }
+  }, [])
 
   return (
-    <View style={{ flex: 1 }}>
-      <CustomBottomSheetModal ref={bottomSheetRef} />
-      <Button title="Present Modal" onPress={handlePresentModalPress} />
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.button} onPress={onPress}>
+        <Text>Trade Settings</Text>
+      </TouchableOpacity>
+      <BottomSheet ref={ref} heading="Trade Settings" isDark={isDark}>
+        <TradeSettingDrawer />
+      </BottomSheet>
     </View>
   )
 }
 
-export default Trade
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#111',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  button: {
+    borderRadius: 2,
+    backgroundColor: 'white',
+    opacity: 0.6,
+    padding: 10,
+  },
+})
