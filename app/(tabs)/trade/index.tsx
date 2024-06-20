@@ -1,16 +1,18 @@
-import { ThemedText } from '@/components/ThemedText'
-import { ThemedView } from '@/components/ThemedView'
-import HistoryAndHotSection from '@/components/ui/home/history-hot-section'
-import TradeSettingDrawer from '@/components/ui/trade/trade-setting-drawer'
-import React from 'react'
-import { View, Text, SafeAreaView } from 'react-native'
+import React, { useRef } from 'react'
+import { View, Button } from 'react-native'
+import CustomBottomSheetModal from '@/components/ui/BottomDrawer/CustomBottomSheetModal'
+import { BottomSheetModal } from '@gorhom/bottom-sheet'
 
 function Trade() {
+  const bottomSheetRef = useRef<BottomSheetModal>(null)
+
+  const handlePresentModalPress = () => bottomSheetRef.current?.present()
+
   return (
-    <SafeAreaView>
-      <HistoryAndHotSection />
-      <TradeSettingDrawer />
-    </SafeAreaView>
+    <View style={{ flex: 1 }}>
+      <CustomBottomSheetModal ref={bottomSheetRef} />
+      <Button title="Present Modal" onPress={handlePresentModalPress} />
+    </View>
   )
 }
 
