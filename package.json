@@ -45,7 +45,8 @@
     "react-native-svg": "15.2.0",
     "react-native-web": "^0.19.12",
     "stream": "^0.0.2",
-    "thirdweb": "^5.24.0"
+    "thirdweb": "^5.24.0",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

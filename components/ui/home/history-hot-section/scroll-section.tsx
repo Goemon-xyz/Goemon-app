@@ -1,59 +1,14 @@
-import { ThemedView } from '@/components/ThemedView'
 import React from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
+import { ThemedView } from '@/components'
 import Card from './card'
+import { CoinData } from '@/types/tabs/home/history-hot-section/types'
 
-function ScrollSection() {
-  const data = [
-    {
-      coinName: 'ETH',
-      cardType: 'Ethereum',
-      conversionCurrency: 'USD',
-      rate: 0.8974,
-      profitLossPercentage: -1.5,
-      date: '22.Apr',
-    },
-    {
-      coinName: 'DOGE',
-      cardType: 'Dogecoin',
-      conversionCurrency: 'USD',
-      rate: 18.2843,
-      profitLossPercentage: +0.5,
-      date: '21.Apr',
-    },
-    {
-      coinName: 'BTC',
-      cardType: 'Bitcoin',
-      conversionCurrency: 'USD',
-      rate: 5.8754,
-      profitLossPercentage: -2.35,
-      date: '18.Apr',
-    },
-    {
-      coinName: 'ETH',
-      cardType: 'Ethereum',
-      conversionCurrency: 'USD',
-      rate: 0.8974,
-      profitLossPercentage: -1.5,
-      date: '22.Apr',
-    },
-    {
-      coinName: 'DOGE',
-      cardType: 'Dogecoin',
-      conversionCurrency: 'USD',
-      rate: 18.2843,
-      profitLossPercentage: +0.5,
-      date: '21.Apr',
-    },
-    {
-      coinName: 'BTC',
-      cardType: 'Bitcoin',
-      conversionCurrency: 'USD',
-      rate: 5.8754,
-      profitLossPercentage: -2.35,
-      date: '18.Apr',
-    },
-  ]
+interface ScrollSectionProps {
+  data: CoinData[]
+}
+
+const ScrollSection: React.FC<ScrollSectionProps> = ({ data }) => {
   return (
     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
       <View style={styles.container}>
@@ -72,7 +27,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 1,
+    paddingVertical: 10,
     margin: 10,
   },
 })

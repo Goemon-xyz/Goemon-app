@@ -1,12 +1,11 @@
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-
-import { ThemedText } from '@/components/ThemedText'
-import { ThemedView } from '@/components/ThemedView'
+import { ThemedView } from '@/components'
 import { Link } from 'expo-router'
 import TopNavBar from '@/components/TopNavBar'
 import { StyleSheet } from 'react-native'
 import ReferralDemo from '@/components/ReferralDemo'
+import HistoryAndHotSection from '@/components/ui/home/history-hot-section'
 
 function Market() {
   return (
@@ -18,6 +17,7 @@ function Market() {
         </Link>
         <ReferralDemo />
       </ThemedView>
+      <HistoryAndHotSection />
     </SafeAreaView>
   )
 }
