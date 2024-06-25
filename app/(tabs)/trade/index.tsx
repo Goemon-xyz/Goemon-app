@@ -1,3 +1,4 @@
+
 import { StyleSheet, TouchableOpacity, View, useColorScheme, Text } from 'react-native'
 import React, { useCallback, useRef } from 'react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
@@ -18,7 +19,9 @@ export default function Trade() {
     }
   }, [])
 
+
   return (
+
     <View style={styles.container}>
       <TouchableOpacity style={styles.button} onPress={onPress}>
         <Text>Trade Settings</Text>
@@ -27,6 +30,7 @@ export default function Trade() {
         <TradeSettingDrawer />
       </BottomSheet>
     </View>
+
   )
 }
 
