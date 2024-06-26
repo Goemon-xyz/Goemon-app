@@ -1,7 +1,13 @@
 import { ThemedText } from '@/components/ThemedText'
 import { ThemedView } from '@/components/ThemedView'
 
-import WalletBalanceSection from '@/components/ui/home/wallet-balance-section'
+
+import TradeSettingDrawer from '@/components/ui/trade/trade-setting-drawer'
+import MaturityCard from '@/components/ui/trade/trade-setting-drawer/MaturityCard'
+import InfoSection from '@/components/ui/trade/trade-setting-drawer/info-section'
+import MaxSlippageSection from '@/components/ui/trade/trade-setting-drawer/max-slippage-section'
+import SelectYieldSection from '@/components/ui/trade/trade-setting-drawer/select-yield-section'
+
 
 import React from 'react'
 
@@ -10,9 +16,7 @@ import { View, Text, SafeAreaView } from 'react-native'
 function Portfolio() {
   return (
     <SafeAreaView>
-      <ThemedView style={{ marginTop: 20 }}>
-        <WalletBalanceSection />
-      </ThemedView>
+      <TradeSettingDrawer />
     </SafeAreaView>
   )
 }
