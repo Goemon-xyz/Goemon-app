@@ -1,11 +1,10 @@
-import { ThemedText } from '@/components/ThemedText'
-import { ThemedView } from '@/components/ThemedView'
+import { ThemedText, ThemedView } from '@/components'
 import MiddleTabScrollSection from '@/components/ui/home/middle-tabs-scroll-section'
-import Card from '@/components/ui/home/middle-tabs-scroll-section/card'
-import React from 'react'
-import { View, Text, SafeAreaView } from 'react-native'
+import { SafeAreaView } from 'react-native'
+import useStore from '@/store/useMiddleTabScrollStore'
 
 function Earn() {
+  const coins = useStore((state) => state.coins)
   return (
     <SafeAreaView>
       <ThemedView>

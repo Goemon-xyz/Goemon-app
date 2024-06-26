@@ -1,12 +1,11 @@
 import React from 'react'
 import { useState } from 'react'
-
 import { Text, View, Image, useColorScheme, StyleSheet } from 'react-native'
 import { ThemedText } from '@/components/ThemedText'
 import { ThemedView } from '@/components/ThemedView'
-
 import { AntDesign } from '@expo/vector-icons'
 import Coin from '@/assets/coins/svg'
+import useStore from '@/store/useMiddleTabScrollStore'
 
 interface CardData {
   coinName: string
@@ -16,8 +15,9 @@ interface CardData {
   change: number
 }
 
-function Card({ data }: { data: CardData }) {
+function Card({ data, index }: { data: CardData; index: number }) {
   const { coinName, coinFullName, cardType, lastPrize, change } = data
+  const updateCoin = useStore((state) => state.updateCoin)
 
   const [coinNameState, setCoinName] = useState<string>(coinName)
   const [coinFullNameState, setCoinFullName] = useState<string>(coinFullName)
@@ -25,6 +25,7 @@ function Card({ data }: { data: CardData }) {
   const [lastPrizeState, setLastPrize] = useState<number>(lastPrize)
   const [changeState, setChange] = useState<number>(change)
   const colorScheme = useColorScheme()
+
   // function Card() {
   return (
     <View style={styles.container}>
