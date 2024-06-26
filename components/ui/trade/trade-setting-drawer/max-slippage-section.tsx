@@ -1,19 +1,20 @@
+import React from 'react'
+import { View, Text, Switch, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
+import { ThemedText } from '@/components/ThemedText'
+import useTradeSettingStore from '@/store/useTradeSettingStore'
 import MinusSVG from '@/assets/icons/trade/trade-seeting-drawer/svg/minusSVG'
 import PlusSVG from '@/assets/icons/trade/trade-seeting-drawer/svg/plusSVG'
-import { ThemedText } from '@/components/ThemedText'
-import React, { useState } from 'react'
-import { View, Text, Switch, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native'
 
 const MaxSlippageSection = () => {
-  const [isAuto, setIsAuto] = useState(false)
-  const [percentage, setPercentage] = useState(0)
+  const { isAutoSlippage, slippagePercentage, setIsAutoSlippage, setSlippagePercentage } =
+    useTradeSettingStore()
 
   const handleDecrease = () => {
-    setPercentage((prevPercentage) => Math.max(0, prevPercentage - 5))
+    setSlippagePercentage(Math.max(0, slippagePercentage - 5))
   }
 
   const handleIncrease = () => {
-    setPercentage((prevPercentage) => prevPercentage + 5)
+    setSlippagePercentage(slippagePercentage + 5)
   }
 
   return (
@@ -23,8 +24,8 @@ const MaxSlippageSection = () => {
         <View style={styles.row}>
           <ThemedText style={{ fontSize: 12 }}>Auto</ThemedText>
           <Switch
-            value={isAuto}
-            onValueChange={setIsAuto}
+            value={isAutoSlippage}
+            onValueChange={setIsAutoSlippage}
             trackColor={{ false: 'rgba(45, 168, 206, 1)', true: 'rgba(45, 168, 206, 1)' }}
           />
         </View>
@@ -35,10 +36,10 @@ const MaxSlippageSection = () => {
         </TouchableOpacity>
         <TextInput
           style={styles.input}
-          value={`${percentage}%`}
-          editable={!isAuto}
+          value={`${slippagePercentage}%`}
+          editable={!isAutoSlippage}
           keyboardType="numeric"
-          onChangeText={(text) => setPercentage(Number(text.replace('%', '')))}
+          onChangeText={(text) => setSlippagePercentage(Number(text.replace('%', '')))}
         />
         <TouchableOpacity style={styles.button} onPress={handleIncrease}>
           <PlusSVG />

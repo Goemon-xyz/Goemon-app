@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
-
-import { StyleSheet, Switch, TouchableOpacity, View } from 'react-native'
+import React from 'react'
+import { StyleSheet, Switch, View } from 'react-native'
 import MaturityCard from './MaturityCard'
 import BitcoinSVG from '@/assets/coins/svg/bitcoinSVG'
 import DogecoinSVG from '@/assets/coins/svg/dogecoinSVG'
 import EthcoinSVG from '@/assets/coins/svg/ethcoinSVG'
 import { ThemedText } from '@/components/ThemedText'
+import useTradeSettingStore from '@/store/useTradeSettingStore'
 
 const SelectYieldSection = () => {
+  const { isAutoYield, setIsAutoYield } = useTradeSettingStore()
+
   const data = [
     {
       coinSVG: BitcoinSVG,
@@ -29,22 +31,20 @@ const SelectYieldSection = () => {
     },
   ]
 
-  const [isAuto, setIsAuto] = useState(false)
-
   return (
     <View style={styles.container}>
       <View style={styles.row}>
         <ThemedText style={styles.heading}>Select Yield</ThemedText>
         <View style={styles.row}>
-          <ThemedText style={{ fontSize: 12 }}>Auto</ThemedText>
+          <ThemedText style={styles.text}>Auto</ThemedText>
           <Switch
-            value={isAuto}
-            onValueChange={setIsAuto}
+            value={isAutoYield}
+            onValueChange={setIsAutoYield}
             trackColor={{ false: 'rgba(45, 168, 206, 1)', true: 'rgba(45, 168, 206, 1)' }}
           />
         </View>
       </View>
-      <View style={styles.InnerContainer}>
+      <View style={styles.innerContainer}>
         {data.map((item, index) => (
           <MaturityCard
             key={index}
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 16,
   },
-  InnerContainer: {
+  innerContainer: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -77,6 +77,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     marginBottom: 20,
+  },
+  text: {
+    fontSize: 12,
   },
 })
 
