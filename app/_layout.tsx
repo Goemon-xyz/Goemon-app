@@ -31,18 +31,6 @@ export default function RootLayout() {
   }
 
   return (
-<<<<<<< HEAD
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <ThirdwebProvider>
-        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="+not-found" />
-          </Stack>
-        </ThemeProvider>
-      </ThirdwebProvider>
-    </GestureHandlerRootView>
-=======
     <ThirdwebProvider>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         <Stack>
@@ -70,6 +58,5 @@ export default function RootLayout() {
         </Stack>
       </ThemeProvider>
     </ThirdwebProvider>
->>>>>>> origin/shauryaagrawal2718/goe-38-trade-settings-page
   )
 }
