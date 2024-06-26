@@ -6,7 +6,6 @@ import * as SplashScreen from 'expo-splash-screen'
 import { useColorScheme } from 'react-native'
 import { ThirdwebProvider } from 'thirdweb/react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
-import BottomSheet from '@/components/ui/BottomDrawer/BottomSheet'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
@@ -32,31 +31,33 @@ export default function RootLayout() {
 
   return (
     <ThirdwebProvider>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
-          <Stack.Screen
-            name="settings"
-            options={{
-              title: 'Setting',
-              headerShadowVisible: true,
-              headerTitleAlign: 'center',
-              headerStyle: {
-                backgroundColor:
-                  colorScheme === 'dark' ? 'rgba(0, 0, 0, 1)' : 'rgba(255, 255, 255, 1)',
-              },
-              headerTintColor:
-                colorScheme === 'dark' ? 'rgba(250, 250, 250, 1)' : 'rgba(0, 0, 0, 1)',
-              headerTitleStyle: {
-                fontFamily: 'Poppins',
-                fontWeight: '700',
-                fontSize: 20,
-              },
-            }}
-          />
-        </Stack>
-      </ThemeProvider>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="+not-found" />
+            <Stack.Screen
+              name="settings"
+              options={{
+                title: 'Setting',
+                headerShadowVisible: true,
+                headerTitleAlign: 'center',
+                headerStyle: {
+                  backgroundColor:
+                    colorScheme === 'dark' ? 'rgba(0, 0, 0, 1)' : 'rgba(255, 255, 255, 1)',
+                },
+                headerTintColor:
+                  colorScheme === 'dark' ? 'rgba(250, 250, 250, 1)' : 'rgba(0, 0, 0, 1)',
+                headerTitleStyle: {
+                  fontFamily: 'Poppins',
+                  fontWeight: '700',
+                  fontSize: 20,
+                },
+              }}
+            />
+          </Stack>
+        </ThemeProvider>
+      </GestureHandlerRootView>
     </ThirdwebProvider>
   )
 }
