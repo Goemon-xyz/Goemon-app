@@ -1,40 +1,25 @@
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { ThemedView } from '@/components'
-import { Link } from 'expo-router'
-import TopNavBar from '@/components/TopNavBar'
 import { StyleSheet } from 'react-native'
 import ReferralDemo from '@/components/ReferralDemo'
 import HistoryAndHotSection from '@/components/ui/home/history-hot-section'
+import TopNavBar from '@/components/tabs/home/top-section/top-nav-bar'
+import ReferLearnCommunityLive from '@/components/tabs/home/top-section/refer-learn-community-live'
+import WalletBalanceSection from '@/components/tabs/home/top-section/wallet-balance-section'
+import CenterLoginSection from '@/components/tabs/home/top-section/center-Section'
+import useUserStore from '@/store/useUserStore'
 
-function Market() {
+function Home() {
+  const isLoggedIn = useUserStore((state) => state.isLoggedIn)
+
   return (
     <SafeAreaView>
-      <ThemedView style={{ margin: 15, backgroundColor: 'black' }}>
-        <TopNavBar />
-        <Link href="/login" style={styles.button}>
-          Sign in
-        </Link>
-        <ReferralDemo />
-      </ThemedView>
+      <TopNavBar />
+      {isLoggedIn ? <WalletBalanceSection /> : <CenterLoginSection />}
+      <ReferLearnCommunityLive />
       <HistoryAndHotSection />
     </SafeAreaView>
   )
 }
 
-export default Market
-
-const styles = StyleSheet.create({
-  button: {
-    color: 'white',
-    backgroundColor: '#2DA8CE',
-    width: 221,
-    height: 50,
-    margin: 'auto',
-    borderRadius: 8,
-    marginTop: 50,
-    textAlign: 'center',
-    textAlignVertical: 'center',
-    fontSize: 16,
-  },
-})
+export default Home
