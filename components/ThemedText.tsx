@@ -1,5 +1,5 @@
+import React from 'react'
 import { Text, type TextProps, StyleSheet } from 'react-native'
-
 import { useThemeColor } from '@/hooks/useThemeColor'
 
 export type ThemedTextProps = TextProps & {
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: 'Poppins',
     fontSize: 26,
-    fontWeight: 400,
+    fontWeight: '400',
     lineHeight: 32,
   },
   subtitle: {

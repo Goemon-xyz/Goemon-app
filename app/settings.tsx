@@ -1,4 +1,5 @@
-import { View, StyleSheet, useColorScheme } from 'react-native'
+import React from 'react'
+import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import { SettingItem } from '@/assets/icons/setting'
 import {
   PrivacyPolicySVG,
@@ -14,6 +15,7 @@ import {
   ShareFeedbackSVG,
 } from '@/assets/icons/setting'
 import { ThemedText } from '@/components/ThemedText'
+import { useThemeStore, useSyncWithSystemTheme } from '@/store/useThemeStore'
 
 const settingsData = [
   {
@@ -21,6 +23,7 @@ const settingsData = [
     title: 'Color Theme',
     RightComponent: SunSVG,
     rightText: undefined,
+    onPress: 'toggleTheme',
   },
   {
     IconComponent: LocalCurrencySVG,
@@ -73,31 +76,41 @@ const settingsData = [
 ]
 
 const Settings = () => {
-  const colorScheme = useColorScheme()
-  const isDark = colorScheme === 'dark'
+  useSyncWithSystemTheme()
+  const isDark = useThemeStore((state) => state.isDark)
+  const toggleTheme = useThemeStore((state) => state.toggleTheme)
+
+  const handlePress = (action) => {
+    if (action === 'toggleTheme') {
+      toggleTheme()
+    }
+  }
 
   return (
     <View style={[styles.container, { backgroundColor: isDark ? '#000' : '#FFF' }]}>
-      {renderSection('Preferences', settingsData.slice(0, 5), isDark)}
-      {renderSection('Support', settingsData.slice(5, 7), isDark)}
-      {renderSection('About', settingsData.slice(7), isDark)}
+      {renderSection('Preferences', settingsData.slice(0, 5), isDark, handlePress)}
+      {renderSection('Support', settingsData.slice(5, 7), isDark, handlePress)}
+      {renderSection('About', settingsData.slice(7), isDark, handlePress)}
     </View>
   )
 }
 
-const renderSection = (sectionTitle, data, isDark) => (
+const renderSection = (sectionTitle, data, isDark, handlePress) => (
   <View key={sectionTitle}>
-    <ThemedText style={styles.heading}>{sectionTitle}</ThemedText>
+    <ThemedText style={[styles.heading, { color: isDark ? '#FFF' : '#000' }]}>
+      {sectionTitle}
+    </ThemedText>
     <View style={styles.innerContainer}>
       {data.map((item, index) => (
-        <SettingItem
-          key={index}
-          IconComponent={item.IconComponent}
-          title={item.title}
-          isDark={isDark}
-          RightComponent={item.RightComponent}
-          rightText={item.rightText}
-        />
+        <TouchableOpacity key={index} onPress={() => handlePress(item.onPress)}>
+          <SettingItem
+            IconComponent={item.IconComponent}
+            title={item.title}
+            isDark={isDark}
+            RightComponent={item.RightComponent}
+            rightText={item.rightText}
+          />
+        </TouchableOpacity>
       ))}
     </View>
   </View>
