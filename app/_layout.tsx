@@ -39,7 +39,7 @@ export default function RootLayout() {
               name="notifications"
               options={{ title: 'Notifications', headerBackTitle: 'Back' }}
             />
-            <Stack.Screen name="+not-found" />
+            <Stack.Screen name="(auth)/login" options={{ headerShown: false }} />
             <Stack.Screen
               name="settings"
               options={{
@@ -60,6 +60,7 @@ export default function RootLayout() {
                 },
               }}
             />
+            <Stack.Screen name="+not-found" />
           </Stack>
         </ThemeProvider>
       </GestureHandlerRootView>

@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { useTheme } from '@react-navigation/native'
-import { AppColors } from '@/constants/Colors'
+import { CustomTheme } from '@/constants/Colors'
 import { HOME_MARKET_TAB_ITEMS as TAB_ITEMS } from '@/constants'
 
 interface TabProps {
@@ -10,7 +10,7 @@ interface TabProps {
 }
 
 const HomeMarketTabs: FC<TabProps> = ({ setActiveTab, activeTab }: TabProps) => {
-  const { colors } = useTheme() as { colors: AppColors }
+  const { colors } = useTheme() as CustomTheme
 
   return (
     <View style={styles.tabContainer}>

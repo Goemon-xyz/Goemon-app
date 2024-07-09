@@ -5,10 +5,10 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 import useUserStore from '@/store/useUserStore'
 import { Colors } from '@/constants/Colors'
-import ReferLearnCommunityLive from '@/components/tabs/home/top-section/refer-learn-community-live'
-import Header from '@/components/ui/home/HomeHeader'
-import HotSection from '@/components/ui/home//HotSection'
-import ListSection from '@/components/ui/home//ListSection'
+import ReferLearnCommunityLive from '@/components/home/ReferLearnCommunity'
+import Header from '@/components/home/HomeHeader'
+import HotSection from '@/components/home//HotSection'
+import ListSection from '@/components/home//ListSection'
 import { ThemedText } from '@/components'
 
 const HomeScreen: FC = () => {
@@ -23,7 +23,7 @@ const HomeScreen: FC = () => {
       <Header />
       <TouchableOpacity
         style={[styles.signInButton, { backgroundColor: theme.button }]}
-        onPress={() => router.push('/signin')}
+        onPress={() => router.push('/(auth)/login')}
       >
         <ThemedText style={[styles.signInText, { color: theme.buttonText }]}>Sign in</ThemedText>
       </TouchableOpacity>

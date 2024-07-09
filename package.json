@@ -17,6 +17,7 @@
     "@coinbase/wallet-mobile-sdk": "^1.0.13",
     "@expo/vector-icons": "^14.0.0",
     "@gorhom/bottom-sheet": "^4",
+    "@hookform/resolvers": "^3.9.0",
     "@react-native-async-storage/async-storage": "^1.23.1",
     "@react-native-clipboard/clipboard": "^1.14.1",
     "@react-native-community/netinfo": "11.3.1",
@@ -38,6 +39,7 @@
     "expo-web-browser": "~13.0.3",
     "react": "18.2.0",
     "react-dom": "^18.3.1",
+    "react-hook-form": "^7.52.1",
     "react-icons": "^5.2.1",
     "react-native": "0.74.1",
     "react-native-aes-gcm-crypto": "^0.2.2",
@@ -53,6 +55,7 @@
     "react-native-web": "^0.19.12",
     "stream": "^0.0.2",
     "thirdweb": "^5.24.0",
+    "yup": "^1.4.0",
     "zustand": "^4.5.2"
   },
   "devDependencies": {

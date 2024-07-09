@@ -1,8 +1,8 @@
 import { StyleSheet, TouchableOpacity, View, useColorScheme, Text } from 'react-native'
 import React, { useCallback, useRef } from 'react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
-import BottomSheet, { BottomSheetRefProps } from '@/components/ui/BottomDrawer/BottomSheet'
-import TradeSettingDrawer from '@/components/ui/trade/trade-setting-drawer'
+import BottomSheet, { BottomSheetRefProps } from '@/components/BottomDrawer/BottomSheet'
+import TradeSettingDrawer from '@/components/trade/trade-setting-drawer'
 
 export default function Trade() {
   const isDark = useColorScheme() === 'dark'

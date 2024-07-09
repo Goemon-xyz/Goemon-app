@@ -6,6 +6,7 @@
 import {
   DarkTheme as NavigationDarkTheme,
   DefaultTheme as NavigationDefaultTheme,
+  Theme,
 } from '@react-navigation/native'
 
 const tintColorLight = '#000'
@@ -68,3 +69,4 @@ export const Colors = {
 
 export type AppTheme = typeof CustomLightTheme
 export type AppColors = typeof CustomLightTheme.colors
+export type CustomTheme = Theme & { colors: AppColors }
