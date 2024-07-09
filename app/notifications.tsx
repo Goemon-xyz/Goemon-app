@@ -1,11 +1,11 @@
-// app/notifications.tsx
-
 import React from 'react'
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, FlatList } from 'react-native'
 import { useRouter } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 import { useTheme } from '@react-navigation/native'
-import { AppColors } from '@/constants/Colors'
+import {  CustomTheme } from '@/constants/Colors'
+
+// Todo: use FlashList here
 
 interface Notification {
   id: string
@@ -24,7 +24,7 @@ interface Notification {
 
 const NotificationsScreen: React.FC = () => {
   const router = useRouter()
-  const { colors } = useTheme() as { colors: AppColors }
+  const { colors } = useTheme() as CustomTheme
 
   const notifications: Notification[] = [
     {

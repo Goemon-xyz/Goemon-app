@@ -1,12 +1,11 @@
-// IconButton.tsx
 import React from 'react';
 import { TouchableOpacity, StyleSheet, ViewStyle } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-// Import other icon sets as needed
+import Ionicons from '@expo/vector-icons/Ionicons';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+import AntDesign from '@expo/vector-icons/AntDesign';
 
-type IconType = 'Ionicons' | 'MaterialIcons' | 'FontAwesome'; // Add more as needed
+type IconType = 'Ionicons' | 'MaterialIcons' | 'FontAwesome' | 'AntDesign';
 
 interface IconButtonProps {
   type: IconType;
@@ -33,7 +32,8 @@ const IconButton: React.FC<IconButtonProps> = ({
         return <MaterialIcons name={name} size={size} color={color} />;
       case 'FontAwesome':
         return <FontAwesome name={name} size={size} color={color} />;
-      // Add more cases for other icon types
+      case 'AntDesign':
+        return <AntDesign name={name} size={size} color={color} />;
       default:
         return <Ionicons name={name} size={size} color={color} />;
     }
