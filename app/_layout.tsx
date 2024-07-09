@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native'
 import { useFonts } from 'expo-font'
 import { Stack } from 'expo-router'
@@ -35,13 +35,18 @@ export default function RootLayout() {
         <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
           <Stack>
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="+not-found" />
+            <Stack.Screen
+              name="notifications"
+              options={{ title: 'Notifications', headerBackTitle: 'Back' }}
+            />
+            <Stack.Screen name="(auth)/login" options={{ headerShown: false }} />
             <Stack.Screen
               name="settings"
               options={{
-                title: 'Setting',
+                title: 'Settings',
                 headerShadowVisible: true,
                 headerTitleAlign: 'center',
+                headerBackTitle: 'Back',
                 headerStyle: {
                   backgroundColor:
                     colorScheme === 'dark' ? 'rgba(0, 0, 0, 1)' : 'rgba(255, 255, 255, 1)',
@@ -55,6 +60,7 @@ export default function RootLayout() {
                 },
               }}
             />
+            <Stack.Screen name="+not-found" />
           </Stack>
         </ThemeProvider>
       </GestureHandlerRootView>
