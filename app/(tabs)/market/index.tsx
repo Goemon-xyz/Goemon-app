@@ -4,6 +4,8 @@ import LineGraph from '@/components/ui/trade/Graph/line-graph'
 import BottomLineGraph from '@/components/ui/trade/Graph/bottom-line-graph'
 import MarkPrice from '@/components/ui/trade/mark-price'
 import OptionsZeroLossComponent from '@/components/ui/trade/options-zero-loss'
+import SelectPairAndSeeRatesSection from '@/components/tabs/trade/trade-execution-page/select-pair-and-see-rates'
+import SettingsIcon from '@/components/ui/trade/setting-icon'
 function generateRandomNumbers(
   size: number,
   min: number,
@@ -29,6 +31,7 @@ const data: number[] = generateRandomNumbers(100, 1, 10000, 500)
 function Market() {
   return (
     <SafeAreaView>
+      <SelectPairAndSeeRatesSection />
       <View style={{ gap: 20 }}>
         <View style={{ paddingTop: 80 }}>
           <LineGraph data={data} color="#2297f3" label="label" stat="stat" />
@@ -43,6 +46,7 @@ function Market() {
       <View style={{ marginTop: 80 }}>
         <OptionsZeroLossComponent />
       </View>
+      <SettingsIcon />
     </SafeAreaView>
   )
 }

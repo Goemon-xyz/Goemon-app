@@ -51,9 +51,6 @@ function OptionsZeroLossComponent() {
             </View>
           </TouchableOpacity>
         </View>
-        <View>
-          <Slider />
-        </View>
       </View>
     </View>
   )

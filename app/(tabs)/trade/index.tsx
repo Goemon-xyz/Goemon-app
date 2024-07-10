@@ -1,11 +1,16 @@
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import SettingsIcon from '@/components/ui/trade/setting-icon'
 import React from 'react'
-import { SafeAreaView, View, StyleSheet } from 'react-native'
+import { SafeAreaView, View, StyleSheet, Dimensions } from 'react-native'
 import LineGraph from '@/components/ui/trade/Graph/line-graph'
 import BottomLineGraph from '@/components/ui/trade/Graph/bottom-line-graph'
 import MarkPrice from '@/components/ui/trade/mark-price'
 import OptionsZeroLossComponent from '@/components/ui/trade/options-zero-loss'
+import SelectPairAndSeeRatesSection from '@/components/tabs/trade/trade-execution-page/select-pair-and-see-rates'
+import SliderComponent from '@/components/ui/trade/options-zero-loss/slider'
+
+const WIDTH = Dimensions.get('window').width
+
 function generateRandomNumbers(
   size: number,
   min: number,
@@ -30,9 +35,10 @@ const data: number[] = generateRandomNumbers(100, 1, 10000, 500)
 
 export default function Trade() {
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
+    <>
+      <SelectPairAndSeeRatesSection />
       <View style={{ gap: 20 }}>
-        <View style={{ paddingTop: 80 }}>
+        <View style={{ paddingTop: 40 }}>
           <LineGraph data={data} color="#2297f3" label="label" stat="stat" />
         </View>
         <View style={{ marginTop: 221 }}>
@@ -42,11 +48,12 @@ export default function Trade() {
       <View style={{ marginTop: 80 }}>
         <MarkPrice />
       </View>
-      <View style={{ marginTop: 80 }}>
+      <View style={{ marginTop: 80, marginLeft: 20 }}>
         <OptionsZeroLossComponent />
       </View>
-      <SettingsIcon />
-    </GestureHandlerRootView>
+      <SettingsIcon style={{ position: 'relative', left: WIDTH * 0.9, top: -40 }} />
+      <SliderComponent />
+    </>
   )
 }
 

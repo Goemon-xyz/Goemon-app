@@ -17,7 +17,8 @@ function SelectPairAndSeeRatesSection() {
         <SelectPairCard type="Ethereum" pair="ETH-USD" />
         <SeeRatesCard rate="$1834.48" percentage="-125%" />
       </View>
-      <View
+      {/* DONT REMOVE THE BELOW COMMENTED CODE */}
+      {/* <View
         style={{
           flexDirection: 'row',
           justifyContent: 'space-evenly',
@@ -27,7 +28,7 @@ function SelectPairAndSeeRatesSection() {
       >
         <SelectPairCard type="Bitcoin" pair="BTC-USD" />
         <SeeRatesCard rate="$5346.14" percentage="+63.3%" />
-      </View>
+      </View> */}
     </>
   )
 }

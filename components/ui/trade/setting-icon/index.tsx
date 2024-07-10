@@ -1,10 +1,14 @@
 import React, { useCallback, useRef } from 'react'
-import { TouchableOpacity, View, useColorScheme } from 'react-native'
+import { TouchableOpacity, View, useColorScheme, StyleProp, ViewStyle } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import BottomSheet, { BottomSheetRefProps } from '@/components/ui/BottomDrawer/BottomSheet'
 import TradeSettingDrawer from '@/components/ui/trade/trade-setting-drawer'
 
-export default function SettingsIcon() {
+interface SettingsIconProps {
+  style?: StyleProp<ViewStyle>
+}
+
+export default function SettingsIcon({ style }: SettingsIconProps) {
   const isDark = useColorScheme() === 'dark'
   const ref = useRef<BottomSheetRefProps>(null)
 
@@ -19,7 +23,7 @@ export default function SettingsIcon() {
 
   return (
     <>
-      <TouchableOpacity onPress={onPress}>
+      <TouchableOpacity onPress={onPress} style={style}>
         <Icon name="settings-outline" size={20} color={isDark ? '#fff' : '#000'} />
       </TouchableOpacity>
       <BottomSheet ref={ref} heading="Trade Settings" isDark={isDark}>
