@@ -8,11 +8,11 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 type IconType = 'Ionicons' | 'MaterialIcons' | 'FontAwesome' | 'AntDesign';
 
 interface IconButtonProps {
-  type: IconType;
+  type?: IconType;
   name: string;
   size?: number;
   color?: string;
-  onPress: () => void;
+  onPress?: () => void;
   style?: ViewStyle;
 }
 

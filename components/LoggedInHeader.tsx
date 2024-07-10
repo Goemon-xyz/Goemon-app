@@ -5,7 +5,7 @@ import { useRouter } from 'expo-router'
 import IconButton from '@/components/IconButton'
 import { Colors } from '@/constants/Colors'
 
-const HomeScreenHeader: FC = () => {
+const LoggedInHeader: FC = () => {
   const router = useRouter()
   const colorScheme = useColorScheme()
   const theme = colorScheme === 'dark' ? Colors.dark : Colors.light
@@ -67,4 +67,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default HomeScreenHeader
+export default LoggedInHeader

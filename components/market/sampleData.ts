@@ -22,7 +22,7 @@ export const topItems: TopItem[] = [
 export const hotItems: HotItem[] = [
   {
     id: '1',
-    symbol: 'PENDLE',
+    symbol: 'BTC',
     date: '26Apr24-6.50-C',
     leverage: '0.40X',
     type: '0-Loss',
@@ -31,7 +31,7 @@ export const hotItems: HotItem[] = [
   },
   {
     id: '2',
-    symbol: 'PENDLE',
+    symbol: 'ETH',
     date: '26Jun24-6.50-C',
     leverage: '0.71X',
     type: '0-Loss',
@@ -43,7 +43,7 @@ export const hotItems: HotItem[] = [
 export const optionsItems: OptionsItem[] = [
   {
     id: '1',
-    symbol: 'PENDLE',
+    symbol: 'BTC',
     date: '26Apr24-6.50-C',
     leverage: '0.40X',
     type: '0-Loss',
@@ -52,7 +52,7 @@ export const optionsItems: OptionsItem[] = [
   },
   {
     id: '2',
-    symbol: 'PENDLE',
+    symbol: 'ETH',
     date: '26Jun24-6.50-C',
     leverage: '0.71X',
     type: '0-Loss',

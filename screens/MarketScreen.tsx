@@ -3,15 +3,15 @@ import { View, Text, FlatList, TouchableOpacity, TextInput } from 'react-native'
 import { useTheme } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons'
 
-import { CustomTheme } from '@/constants/Colors'
-import { HOME_MARKET_TAB_ITEMS as TAB_ITEMS } from '@/constants'
-import Tabs from '@/components/HomeMarketTabs'
+import Tabs from '@/components/TabBar'
 import MarketScreenHotItem from '@/components/market/HotItem'
 import MarketScreenTopItem from '@/components/market/TopItem'
 import MarketScreenOptionsItem from '@/components/market/OptionsItem'
 import { styles } from '@/components/market/styles'
 import { TopItem, HotItem, OptionsItem } from '@/components/market/types'
 import { topItems, hotItems, optionsItems } from '@/components/market/sampleData'
+import { CustomTheme } from '@/constants/Colors'
+import { HOME_MARKET_TAB_ITEMS as TAB_ITEMS } from '@/constants'
 
 interface MappingItem {
   data: TopItem[] | HotItem[] | OptionsItem[]
@@ -56,7 +56,12 @@ const MarketScreen: FC = () => {
         value={searchQuery}
         onChangeText={setSearchQuery}
       />
-      <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Tabs
+        additionalStyles={{ justifyContent: 'space-around' }}
+        items={Object.values(TAB_ITEMS)}
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+      />
 
       {(activeTab === TAB_ITEMS.OLOSS || activeTab === TAB_ITEMS.OPTIONS) && (
         <View style={styles.filterContainer}>

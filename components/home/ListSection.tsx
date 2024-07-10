@@ -2,8 +2,13 @@ import { FC, useState } from 'react'
 import { View, Text, StyleSheet, Image, useColorScheme } from 'react-native'
 import { useRouter } from 'expo-router'
 import { FlashList, ListRenderItem } from '@shopify/flash-list'
+
 import { Colors } from '@/constants/Colors'
-import Tabs from '../HomeMarketTabs'
+import Tabs from '../TabBar'
+import { HOME_MARKET_TAB_ITEMS } from '@/constants'
+import BitcoinSVG from '@/assets/coins/svg/bitcoinSVG'
+import DogecoinSVG from '@/assets/coins/svg/dogecoinSVG'
+import EthcoinSVG from '@/assets/coins/svg/ethcoinSVG'
 
 interface ListItem {
   name: string
@@ -41,11 +46,10 @@ const ListSection: FC = () => {
 
   const renderListItem: ListRenderItem<ListItem> = ({ item }) => (
     <View style={styles.listItem}>
-      <View style={[{ flexDirection: 'row' }]}>
-        <Image
-          source={{ uri: `https://cryptoicons.org/api/icon/${item.symbol.toLowerCase()}/200` }}
-          style={styles.coinIcon}
-        />
+      <View style={[{ flexDirection: 'row', gap: 8 }]}>
+        {item.symbol === 'BTC' && <BitcoinSVG width={30} height={30} />}
+        {item.symbol === 'ETH' && <EthcoinSVG width={30} height={30} />}
+        {item.symbol === 'DOGE' && <DogecoinSVG width={30} height={30} />}
         <View>
           <Text style={[styles.coinName, { color: theme.text }]}>{item.name}</Text>
           <Text style={[styles.coinSymbol, { color: theme.secondaryText }]}>{item.symbol}</Text>
@@ -62,7 +66,14 @@ const ListSection: FC = () => {
 
   return (
     <View style={styles.container}>
-      <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Tabs
+        additionalStyles={{
+          justifyContent: 'space-around',
+        }}
+        items={Object.values(HOME_MARKET_TAB_ITEMS)}
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+      />
       <View style={styles.topListContainer}>
         <FlashList
           data={listItems}

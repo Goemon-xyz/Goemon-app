@@ -1,17 +1,22 @@
 import { FC } from 'react'
-import { View, Text, Image } from 'react-native'
-import { useTheme } from '@react-navigation/native'
+import { View, Text, useColorScheme } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
-import { CustomTheme } from '@/constants/Colors'
+import { Colors } from '@/constants/Colors'
 import { listItemStyles as styles } from '@/components/market/styles'
 import { OptionsItem } from '@/components/market/types'
+import BitcoinSVG from '@/assets/coins/svg/bitcoinSVG'
+import DogecoinSVG from '@/assets/coins/svg/dogecoinSVG'
+import EthcoinSVG from '@/assets/coins/svg/ethcoinSVG'
 
 const MarketScreenOptionsItem: FC = ({ item }: { item: OptionsItem }) => {
-  const { colors } = useTheme() as CustomTheme
+  const colorScheme = useColorScheme()
+  const colors = colorScheme === 'dark' ? Colors.dark : Colors.light
   return (
     <View style={styles.listItem}>
-      <Image source={{ uri: item.iconUrl }} style={styles.coinIcon} />
+      {item.symbol === 'BTC' && <BitcoinSVG width={24} height={24} />}
+      {item.symbol === 'ETH' && <EthcoinSVG width={24} height={24} />}
+      {item.symbol === 'DOGE' && <DogecoinSVG width={24} height={24} />}
       <View style={styles.coinInfo}>
         <Text style={[styles.coinName, { color: colors.text }]}>{item.symbol}</Text>
         <Text style={[styles.coinSymbol, { color: colors.secondaryText }]}>{item.date}</Text>
