@@ -4,8 +4,13 @@ import { useFonts } from 'expo-font'
 import { Stack } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import { useColorScheme } from 'react-native'
-import { ThirdwebProvider } from 'thirdweb/react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
+
+import 'fast-text-encoding';
+import 'react-native-get-random-values';
+import '@ethersproject/shims';
+
+import {PrivyProvider} from '@privy-io/expo';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
@@ -30,7 +35,7 @@ export default function RootLayout() {
   }
 
   return (
-    <ThirdwebProvider>
+    <PrivyProvider appId={process.env.EXPO_PUBLIC_PRIVY_APP_ID!}>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
           <Stack>
@@ -64,6 +69,6 @@ export default function RootLayout() {
           </Stack>
         </ThemeProvider>
       </GestureHandlerRootView>
-    </ThirdwebProvider>
+    </PrivyProvider>
   )
 }
