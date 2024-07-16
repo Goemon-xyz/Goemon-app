@@ -1,10 +1,11 @@
+// MarketScreen.tsx
 import React, { useState, FC } from 'react'
 import { View, FlatList, Text } from 'react-native'
 import { useTheme } from '@react-navigation/native'
 
 import { CustomTheme } from '@/constants/Colors'
 import { HOME_MARKET_TAB_ITEMS as TAB_ITEMS } from '@/constants'
-import Tabs from '@/components/HomeMarketTabs'
+import Tabs from '@/components/Tabs'
 import MarketScreenHotItem from '@/components/market/HotItem'
 import MarketScreenTopItem from '@/components/market/TopItem'
 import MarketScreenOptionsItem from '@/components/market/OptionsItem'
@@ -35,7 +36,7 @@ const Header: FC = () => {
 
 const MarketScreen: FC = () => {
   const { colors } = useTheme() as CustomTheme
-  const [activeTab, setActiveTab] = useState<string>('Top')
+  const [activeTab, setActiveTab] = useState<string>(TAB_ITEMS.TOP)
   const [searchQuery, setSearchQuery] = useState<string>('')
 
   const mapping = {
@@ -67,7 +68,7 @@ const MarketScreen: FC = () => {
       <View style={{ paddingHorizontal: 25, marginBottom: 16 }}>
         <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       </View>
-      <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Tabs activeTab={activeTab} setActiveTab={setActiveTab} tabItems={Object.values(TAB_ITEMS)} />
 
       {(activeTab === TAB_ITEMS.OLOSS || activeTab === TAB_ITEMS.OPTIONS) && (
         <View style={styles.filterContainer}>
