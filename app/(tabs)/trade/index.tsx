@@ -32,6 +32,8 @@ function generateRandomNumbers(
 }
 
 const data: number[] = generateRandomNumbers(100, 1, 10000, 500)
+import BottomSheet, { BottomSheetRefProps } from '@/components/BottomDrawer/BottomSheet'
+import TradeSettingDrawer from '@/components/trade/trade-setting-drawer'
 
 export default function Trade() {
   return (

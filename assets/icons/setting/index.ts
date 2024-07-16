@@ -1,4 +1,4 @@
-export { default as SettingItem } from '@/components/ui/settings/setting-item'
+export { default as SettingItem } from '@/components/settings/setting-item'
 export { default as PrivacyPolicySVG } from '@/assets/icons/setting/about/svg/privacy_policy'
 export { default as TermOfServiceSVG } from '@/assets/icons/setting/about/svg/term_of_service'
 export { default as ColorThemeSVG } from '@/assets/icons/setting/preference/svg/color_theme'

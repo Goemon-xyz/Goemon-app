@@ -1,7 +1,7 @@
 import { ThemedView } from '@/components/ThemedView'
 import React from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
-import Card from '@/components/ui/home/middle-tabs-scroll-section/card'
+import Card from '@/components/home/middle-tabs-scroll-section/card'
 
 function MiddleTabScrollSection() {
   const data = [

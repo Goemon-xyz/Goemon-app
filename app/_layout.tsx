@@ -1,11 +1,16 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native'
 import { useFonts } from 'expo-font'
 import { Stack } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import { useColorScheme } from 'react-native'
-import { ThirdwebProvider } from 'thirdweb/react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
+
+import 'fast-text-encoding'
+import 'react-native-get-random-values'
+import '@ethersproject/shims'
+
+import { PrivyProvider } from '@privy-io/expo'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
@@ -30,18 +35,23 @@ export default function RootLayout() {
   }
 
   return (
-    <ThirdwebProvider>
-      <GestureHandlerRootView>
+    <PrivyProvider appId={process.env.EXPO_PUBLIC_PRIVY_APP_ID!}>
+      <GestureHandlerRootView style={{ flex: 1 }}>
         <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
           <Stack>
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="+not-found" />
+            <Stack.Screen
+              name="notifications"
+              options={{ title: 'Notifications', headerBackTitle: 'Back' }}
+            />
+            <Stack.Screen name="(auth)/login" options={{ headerShown: false }} />
             <Stack.Screen
               name="settings"
               options={{
-                title: 'Setting',
+                title: 'Settings',
                 headerShadowVisible: true,
                 headerTitleAlign: 'center',
+                headerBackTitle: 'Back',
                 headerStyle: {
                   backgroundColor:
                     colorScheme === 'dark' ? 'rgba(0, 0, 0, 1)' : 'rgba(255, 255, 255, 1)',
@@ -55,9 +65,10 @@ export default function RootLayout() {
                 },
               }}
             />
+            <Stack.Screen name="+not-found" />
           </Stack>
         </ThemeProvider>
       </GestureHandlerRootView>
-    </ThirdwebProvider>
+    </PrivyProvider>
   )
 }
