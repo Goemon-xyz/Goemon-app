@@ -19,14 +19,14 @@ const HomeScreen: FC = () => {
 
   // const isLoggedIn = useUserStore((state) => state.isLoggedIn)
 
-  const {user, logout} = usePrivy();
-  const {getAccessToken} = usePrivy();
+  const { user, logout } = usePrivy()
+  const { getAccessToken } = usePrivy()
 
   useEffect(() => {
     const fetchAccessToken = async () => {
-      if(user) {
-        const accessToken = await getAccessToken();
-        console.log("accessToken is", accessToken)
+      if (user) {
+        const accessToken = await getAccessToken()
+        console.log('accessToken is', accessToken)
       }
     }
 
@@ -36,18 +36,21 @@ const HomeScreen: FC = () => {
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.background }]}>
       <Header />
-      {!user ? 
-      <TouchableOpacity
-        style={[styles.signInButton, { backgroundColor: theme.button }]}
-        onPress={() => router.push('/(auth)/login')}
-      >
-        <ThemedText style={[styles.signInText, { color: theme.buttonText }]}>Sign in</ThemedText>
-      </TouchableOpacity> : <TouchableOpacity
-        style={[styles.signInButton, { backgroundColor: theme.button }]}
-        onPress={logout}
-      >
-        <ThemedText style={[styles.signInText, { color: theme.buttonText }]}>Logout</ThemedText>
-      </TouchableOpacity> }
+      {!user ? (
+        <TouchableOpacity
+          style={[styles.signInButton, { backgroundColor: theme.button }]}
+          onPress={() => router.push('/(auth)/login')}
+        >
+          <ThemedText style={[styles.signInText, { color: theme.buttonText }]}>Sign in</ThemedText>
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity
+          style={[styles.signInButton, { backgroundColor: theme.button }]}
+          onPress={logout}
+        >
+          <ThemedText style={[styles.signInText, { color: theme.buttonText }]}>Logout</ThemedText>
+        </TouchableOpacity>
+      )}
       <ReferLearnCommunityLive />
       <HotSection />
       <ListSection />
