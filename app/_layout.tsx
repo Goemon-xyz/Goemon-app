@@ -6,11 +6,11 @@ import * as SplashScreen from 'expo-splash-screen'
 import { useColorScheme } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
-import 'fast-text-encoding';
-import 'react-native-get-random-values';
-import '@ethersproject/shims';
+import 'fast-text-encoding'
+import 'react-native-get-random-values'
+import '@ethersproject/shims'
 
-import {PrivyProvider} from '@privy-io/expo';
+import { PrivyProvider } from '@privy-io/expo'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()

@@ -1,5 +1,6 @@
-import { FC, useEffect } from 'react'
-import { StyleSheet, TouchableOpacity, useColorScheme } from 'react-native'
+// HomeScreen.tsx
+import { FC, useEffect, useState } from 'react'
+import { StyleSheet, TouchableOpacity, useColorScheme, View } from 'react-native'
 import { useRouter } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
@@ -7,10 +8,12 @@ import useUserStore from '@/store/useUserStore'
 import { Colors } from '@/constants/Colors'
 import ReferLearnCommunityLive from '@/components/home/ReferLearnCommunity'
 import Header from '@/components/home/HomeHeader'
-import HotSection from '@/components/home//HotSection'
-import ListSection from '@/components/home//ListSection'
+import HotSection from '@/components/home/HotSection'
 import { ThemedText } from '@/components'
 import { usePrivy } from '@privy-io/expo'
+import Tabs from '@/components/Tabs'
+
+const HOME_TAB_ITEMS = ['Top', 'Hot', 'Options']
 
 const HomeScreen: FC = () => {
   const router = useRouter()
@@ -21,6 +24,8 @@ const HomeScreen: FC = () => {
 
   const { user, logout } = usePrivy()
   const { getAccessToken } = usePrivy()
+
+  const [activeTab, setActiveTab] = useState<string>(HOME_TAB_ITEMS[0])
 
   useEffect(() => {
     const fetchAccessToken = async () => {
@@ -53,7 +58,7 @@ const HomeScreen: FC = () => {
       )}
       <ReferLearnCommunityLive />
       <HotSection />
-      <ListSection />
+      <Tabs activeTab={activeTab} setActiveTab={setActiveTab} tabItems={HOME_TAB_ITEMS} />
     </SafeAreaView>
   )
 }
