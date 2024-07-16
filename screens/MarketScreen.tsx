@@ -2,7 +2,6 @@
 import React, { useState, FC } from 'react'
 import { View, FlatList, Text } from 'react-native'
 import { useTheme } from '@react-navigation/native'
-
 import { CustomTheme } from '@/constants/Colors'
 import { HOME_MARKET_TAB_ITEMS as TAB_ITEMS } from '@/constants'
 import Tabs from '@/components/Tabs'
