@@ -1,8 +1,8 @@
 import React, { useCallback, useRef } from 'react'
 import { TouchableOpacity, View, useColorScheme, StyleProp, ViewStyle } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
-import BottomSheet, { BottomSheetRefProps } from '@/components/ui/BottomDrawer/BottomSheet'
-import TradeSettingDrawer from '@/components/ui/trade/trade-setting-drawer'
+import BottomSheet, { BottomSheetRefProps } from '@/components/BottomDrawer/BottomSheet'
+import TradeSettingDrawer from '@/components/trade/trade-setting-drawer'
 
 interface SettingsIconProps {
   style?: StyleProp<ViewStyle>

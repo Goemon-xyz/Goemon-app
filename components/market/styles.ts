@@ -12,6 +12,12 @@ export const styles = StyleSheet.create({
     marginHorizontal: 16,
     marginBottom: 16,
   },
+  Header: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    paddingBottom: 12,
+  },
   tabContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -75,60 +81,60 @@ export const styles = StyleSheet.create({
 })
 
 export const listItemStyles = StyleSheet.create({
-    listItem: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingVertical: 12,
-        paddingHorizontal: 16,
-      },
-      coinIcon: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
-        marginRight: 12,
-      },
-      coinInfo: {
-        flex: 1,
-      },
-      coinName: {
-        fontWeight: 'bold',
-        fontSize: 16,
-      },
-      coinSymbol: {
-        fontSize: 14,
-      },
-      priceInfo: {
-        alignItems: 'flex-end',
-      },
-      coinPrice: {
-        fontWeight: 'bold',
-        fontSize: 16,
-      },
-      coinChange: {
-        fontSize: 14,
-      },
-      leverageInfo: {
-        alignItems: 'center',
-      },
-      leverage: {
-        fontWeight: 'bold',
-        fontSize: 16,
-      },
-      typeContainer: {
-        backgroundColor: 'rgba(33, 150, 243, 0.1)',
-        borderRadius: 4,
-        paddingHorizontal: 6,
-        paddingVertical: 2,
-      },
-      type: {
-        fontSize: 12,
-      },
-      volumeInfo: {
-        flexDirection: 'row',
-        alignItems: 'center',
-      },
-      volume: {
-        marginLeft: 4,
-        fontWeight: 'bold',
-      },
+  listItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+  },
+  coinIcon: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    marginRight: 12,
+  },
+  coinInfo: {
+    flex: 1,
+  },
+  coinName: {
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  coinSymbol: {
+    fontSize: 14,
+  },
+  priceInfo: {
+    alignItems: 'flex-end',
+  },
+  coinPrice: {
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  coinChange: {
+    fontSize: 14,
+  },
+  leverageInfo: {
+    alignItems: 'center',
+  },
+  leverage: {
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  typeContainer: {
+    backgroundColor: 'rgba(33, 150, 243, 0.1)',
+    borderRadius: 4,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+  },
+  type: {
+    fontSize: 12,
+  },
+  volumeInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  volume: {
+    marginLeft: 4,
+    fontWeight: 'bold',
+  },
 })

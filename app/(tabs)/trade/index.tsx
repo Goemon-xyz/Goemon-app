@@ -54,7 +54,6 @@ export default function Trade() {
         <OptionsZeroLossComponent />
       </View>
       <SettingsIcon style={{ position: 'relative', left: WIDTH * 0.9, top: -40 }} />
-      <SliderComponent />
     </>
   )
 }

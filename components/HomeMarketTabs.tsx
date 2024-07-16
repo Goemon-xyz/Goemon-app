@@ -17,11 +17,14 @@ const HomeMarketTabs: FC<TabProps> = ({ setActiveTab, activeTab }: TabProps) => 
       {Object.values(TAB_ITEMS).map((tab) => (
         <TouchableOpacity
           key={tab}
-          style={[styles.tab, activeTab === tab && { backgroundColor: colors.primary }]}
+          style={[styles.tab, activeTab === tab && { backgroundColor: 'rgba(33, 33, 36, 1)' }]}
           onPress={() => setActiveTab(tab)}
         >
           <Text
-            style={[styles.tabText, { color: activeTab === tab ? colors.background : colors.text }]}
+            style={[
+              styles.tabText,
+              { color: activeTab === tab ? 'rgba(250, 250, 250, 1)' : colors.text },
+            ]}
           >
             {tab}
           </Text>
@@ -39,11 +42,12 @@ const styles = StyleSheet.create({
   },
   tab: {
     paddingVertical: 8,
-    paddingHorizontal: 16,
+    paddingHorizontal: 20,
     borderRadius: 20,
   },
   tabText: {
     fontWeight: 'bold',
+    fontSize: 16,
   },
 })
 

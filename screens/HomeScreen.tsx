@@ -8,7 +8,6 @@ import { Colors } from '@/constants/Colors'
 import ReferLearnCommunityLive from '@/components/home/ReferLearnCommunity'
 import Header from '@/components/home/HomeHeader'
 import HotSection from '@/components/home//HotSection'
-import ListSection from '@/components/home//ListSection'
 import { ThemedText } from '@/components'
 import { usePrivy } from '@privy-io/expo'
 
@@ -53,7 +52,6 @@ const HomeScreen: FC = () => {
       )}
       <ReferLearnCommunityLive />
       <HotSection />
-      <ListSection />
     </SafeAreaView>
   )
 }
