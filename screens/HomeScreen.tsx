@@ -1,6 +1,6 @@
 // HomeScreen.tsx
 import { FC, useEffect, useState } from 'react'
-import { StyleSheet, TouchableOpacity, useColorScheme, View } from 'react-native'
+import { ScrollView, StyleSheet, TouchableOpacity, useColorScheme, View } from 'react-native'
 import { useRouter } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
@@ -11,21 +11,15 @@ import Header from '@/components/home/HomeHeader'
 import HotSection from '@/components/home/HotSection'
 import { ThemedText } from '@/components'
 import { usePrivy } from '@privy-io/expo'
-import Tabs from '@/components/Tabs'
-
-const HOME_TAB_ITEMS = ['Top', 'Hot', 'Options']
+import MarketTabs from '@/components/market/Market-Tabs'
 
 const HomeScreen: FC = () => {
   const router = useRouter()
   const colorScheme = useColorScheme()
   const theme = colorScheme === 'dark' ? Colors.dark : Colors.light
 
-  // const isLoggedIn = useUserStore((state) => state.isLoggedIn)
-
   const { user, logout } = usePrivy()
   const { getAccessToken } = usePrivy()
-
-  const [activeTab, setActiveTab] = useState<string>(HOME_TAB_ITEMS[0])
 
   useEffect(() => {
     const fetchAccessToken = async () => {
@@ -40,6 +34,7 @@ const HomeScreen: FC = () => {
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.background }]}>
+      {/* <ScrollView> */}
       <Header />
       {!user ? (
         <TouchableOpacity
@@ -58,7 +53,8 @@ const HomeScreen: FC = () => {
       )}
       <ReferLearnCommunityLive />
       <HotSection />
-      <Tabs activeTab={activeTab} setActiveTab={setActiveTab} tabItems={HOME_TAB_ITEMS} />
+      <MarketTabs />
+      {/* </ScrollView> */}
     </SafeAreaView>
   )
 }
@@ -78,17 +74,6 @@ const styles = StyleSheet.create({
   signInText: {
     textAlign: 'center',
     fontWeight: 'bold',
-  },
-  navButtons: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginBottom: 20,
-  },
-  navButton: {
-    alignItems: 'center',
-  },
-  navButtonText: {
-    marginTop: 5,
   },
 })
 

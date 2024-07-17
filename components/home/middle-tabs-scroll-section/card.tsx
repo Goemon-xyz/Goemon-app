@@ -25,7 +25,6 @@ function Card({ data }: { data: CardData }) {
   const [lastPrizeState, setLastPrize] = useState<number>(lastPrize)
   const [changeState, setChange] = useState<number>(change)
   const colorScheme = useColorScheme()
-  // function Card() {
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: 'row' }}>
