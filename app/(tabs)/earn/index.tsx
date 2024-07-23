@@ -1,15 +1,15 @@
 import { ThemedText } from '@/components/ThemedText'
 import { ThemedView } from '@/components/ThemedView'
 import MiddleTabScrollSection from '@/components/home/middle-tabs-scroll-section'
-import { SafeAreaView } from 'react-native'
+import UpDownPairButton from '@/components/market/Button-pair'
+import { SafeAreaView, View } from 'react-native'
 
 function Earn() {
   return (
     <SafeAreaView>
-      <ThemedView>
-        <ThemedText>Earn</ThemedText>
-        <MiddleTabScrollSection />
-      </ThemedView>
+      <View style={{ marginTop: 80 }}>
+        <UpDownPairButton />
+      </View>
     </SafeAreaView>
   )
 }
