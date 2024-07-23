@@ -1,5 +1,7 @@
 import { ThemedText } from '@/components/ThemedText'
 import { ThemedView } from '@/components/ThemedView'
+import HotTab from '@/components/market/Hot-tab'
+import HotTabCard from '@/components/market/Hot-tab/hot-tab-card'
 
 import TradeSettingDrawer from '@/components/trade/trade-setting-drawer'
 import MaturityCard from '@/components/trade/trade-setting-drawer/MaturityCard'
@@ -14,7 +16,9 @@ import { View, Text, SafeAreaView } from 'react-native'
 function Portfolio() {
   return (
     <SafeAreaView>
-      <TradeSettingDrawer />
+      <View style={{ marginTop: 80 }}>
+        <HotTab />
+      </View>
     </SafeAreaView>
   )
 }

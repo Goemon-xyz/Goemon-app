@@ -17,6 +17,11 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     paddingBottom: 12,
   },
+  HotheaderItemContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+  },
   tabContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -42,7 +47,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 12,
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: 'rgba(33, 150, 243, 0.5)',
+    borderColor: 'rgba(45, 168, 206, 1)',
   },
   activeFilterButton: {
     backgroundColor: '#2196F3',
