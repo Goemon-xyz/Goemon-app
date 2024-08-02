@@ -13,6 +13,7 @@ import CustomSlider from '@/components/trade/Slider'
 import TradeInput from '@/components/trade/tradeInput'
 import { ThemedText } from '@/components'
 import { generateRandomNumbers } from '@/utils/Trade/GenerateRandomNumbers'
+import MainGraph from '@/components/trade/Main-Graph'
 
 const WIDTH = Dimensions.get('window').width
 const data = generateRandomNumbers(100, 1, 10000, 500)
@@ -23,7 +24,7 @@ export default function Trade() {
       <SelectPairAndSeeRatesSection />
       <View style={styles.graphSection}>
         <View style={styles.lineGraphContainer}>
-          <LineGraph data={data} color="#2297f3" label="label" stat="stat" />
+          <MainGraph />
         </View>
         <View style={styles.volatileIndexContainer}>
           <VolatileIndex />
@@ -68,10 +69,10 @@ const styles = StyleSheet.create({
     gap: 20,
   },
   lineGraphContainer: {
-    paddingTop: 40,
+    paddingTop: 20,
   },
   volatileIndexContainer: {
-    marginTop: 221,
+    marginTop: 340,
   },
   markPriceContainer: {
     marginTop: 80,
