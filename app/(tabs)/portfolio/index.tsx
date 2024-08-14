@@ -1,26 +1,39 @@
-import { ThemedText } from '@/components/ThemedText'
-import { ThemedView } from '@/components/ThemedView'
-import HotTab from '@/components/market/Hot-tab'
-import HotTabCard from '@/components/market/Hot-tab/hot-tab-card'
+import HomeScreenHeader from '@/components/home/HomeHeader'
 
-import TradeSettingDrawer from '@/components/trade/trade-setting-drawer'
-import MaturityCard from '@/components/trade/trade-setting-drawer/MaturityCard'
-import InfoSection from '@/components/trade/trade-setting-drawer/info-section'
-import MaxSlippageSection from '@/components/trade/trade-setting-drawer/max-slippage-section'
-import SelectYieldSection from '@/components/trade/trade-setting-drawer/select-yield-section'
+import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
+import { useState } from 'react'
+import SummaryComponent from '@/components/portfolio/SummaryComponent'
+import PortfolioTabs from '@/components/portfolio/PortfolioTab'
 
-import React from 'react'
-
-import { View, Text, SafeAreaView } from 'react-native'
+const PROFILE_TAB_ITEMS = {
+  SUMMARY: 'Summary',
+  POSITIONS: 'Positions',
+  TRADE_HISTORY: 'Trade History',
+  OTHERS: 'Others',
+}
 
 function Portfolio() {
+  const [activeTab, setActiveTab] = useState<string>(PROFILE_TAB_ITEMS.SUMMARY)
   return (
-    <SafeAreaView>
-      <View style={{ marginTop: 80 }}>
-        <HotTab />
+    <SafeAreaView style={styles.container}>
+      <HomeScreenHeader />
+      <View>
+        <PortfolioTabs
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          tabItems={Object.values(PROFILE_TAB_ITEMS)}
+        />
+        {activeTab === PROFILE_TAB_ITEMS.SUMMARY && <SummaryComponent />}
       </View>
     </SafeAreaView>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 40,
+  },
+})
 
 export default Portfolio
