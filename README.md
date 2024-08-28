@@ -5,7 +5,6 @@ Goemon is a powerful mobile app designed for advanced DeFi options trading. With
 # Key Features:
 
 Key Features:
-
 	•	Zero-Capital Loss: Goemon combines DeFi yield with options trading, providing a unique strategy that protects against capital loss.
 	•	Comprehensive Portfolio Management: Easily track and manage your assets, with real-time data and detailed analytics.
 	•	User-Friendly Interface: Designed with both beginners and experts in mind, Goemon offers an intuitive, mobile-first design for seamless trading on the go.
