@@ -53,11 +53,11 @@ function WalletBalanceSection() {
           <Text style={styles.today}>Today</Text>
         </View>
       </View>
-      <View>
+      {/* <View>
         <TouchableOpacity style={[styles.button, themeStyles.button]}>
           <Text style={styles.buttonText}>Deposit</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   )
 }

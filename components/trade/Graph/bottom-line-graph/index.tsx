@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { View } from 'react-native'
 import * as d3 from 'd3'
-import Svg, { Path, G, Line, Text } from 'react-native-svg'
+import Svg, { Path, G, Line, Text, Rect, Circle } from 'react-native-svg'
 
 export type LineGraphProps = {
   data: number[]
@@ -13,6 +13,7 @@ export type LineGraphProps = {
 }
 
 const GRAPH_ASPECT_RATIO = 53 / 393
+const PADDING = 40
 
 function BottomLineGraph({
   data,
@@ -32,35 +33,43 @@ function BottomLineGraph({
   const xScale = d3
     .scaleLinear()
     .domain([0, data.length - 1])
-    .range([0, width])
+    .range([0, width - 100])
 
   const lineFn = d3
     .line<number>()
     .x((d, i) => xScale(i))
     .y((d) => yScale(d))
 
-  const areaFn = d3
-    .area<number>()
-    .x((d, i) => xScale(i))
-    .y0(height)
-    .y1((d) => yScale(d))
-
   const svgLine = lineFn(data)
-  const svgArea = areaFn(data)
+
+  // Generate 3 equidistant y-axis ticks
+  const yTicks = yScale.ticks(3)
+
+  // Generate 3-4 equidistant x-axis ticks
+  const xTicksCount = Math.min(6, data.length)
+  const xTicks = Array.from({ length: xTicksCount }, (_, i) =>
+    Math.floor((i * (data.length - 1)) / (xTicksCount - 1))
+  )
+
+  const lastValue = data[data.length - 1]
+  const lastX = xScale(data.length - 1)
+  const lastY = yScale(lastValue)
 
   return (
-    <View style={{ flex: 1 }} onLayout={(ev) => setWidth(ev.nativeEvent.layout.width)}>
+    <View style={{ flex: 1 }} onLayout={(ev) => setWidth(ev.nativeEvent.layout.width - PADDING)}>
       {width > 0 && height > 0 && (
-        <Svg width={width} height={height}>
+        <Svg width={width + PADDING} height={height}>
+          {/* Background */}
+          <Rect width={width + PADDING} height={height} fill="rgba(22, 22, 27, 1)" />
           {/* Background X and Y Axes */}
           {showXAxis && (
             <G>
-              {data.map((_, i) => (
+              {xTicks.map((tick, i) => (
                 <Line
                   key={`x-axis-${i}`}
-                  x1={xScale(i)}
+                  x1={xScale(tick)}
                   y1={0}
-                  x2={xScale(i)}
+                  x2={xScale(tick)}
                   y2={height}
                   stroke="#3A3A3E"
                   strokeWidth={0.15}
@@ -70,22 +79,58 @@ function BottomLineGraph({
           )}
           {showYAxis && (
             <G>
-              {yScale.ticks().map((tick, i) => (
-                <Line
-                  key={`y-axis-${i}`}
-                  x1={0}
-                  y1={yScale(tick)}
-                  x2={width}
-                  y2={yScale(tick)}
-                  stroke="#3A3A3E"
-                  strokeWidth={0.15}
-                />
+              {yTicks.map((tick, i) => (
+                <G key={`y-axis-${i}`}>
+                  <Line
+                    x1={0}
+                    y1={yScale(tick)}
+                    x2={width}
+                    y2={yScale(tick)}
+                    stroke="#3A3A3E"
+                    strokeWidth={0.15}
+                  />
+                  <Text
+                    x={width + 5}
+                    y={yScale(tick)}
+                    fill="rgba(107, 107, 107, 1)"
+                    fontSize="10"
+                    alignmentBaseline="middle"
+                  >
+                    {tick}
+                  </Text>
+                </G>
               ))}
             </G>
           )}
           {/* Line and Area */}
           <Path d={svgLine} fill="none" stroke={color} strokeWidth={0.8} />
-          <Path d={svgArea} fill={color} fillOpacity={0.3} />
+          {/* Bob for the last value */}
+          <Circle cx={lastX} cy={lastY} r={4} fill={'rgba(47, 176, 217, 1)'} />
+          {/* Dotted line from the bob to the label */}
+          <Line
+            x1={lastX}
+            y1={lastY}
+            x2={width - 10}
+            y2={lastY}
+            stroke="rgba(47, 176, 217, 1)"
+            strokeWidth={0.5}
+            strokeDasharray="6"
+          />
+          {/* Label for the last value */}
+          <G x={width - 10} y={lastY - 10}>
+            <Rect width="50" height="20" fill="rgba(47, 176, 217, 1)" rx="5" ry="5" />
+            <Text
+              x="25"
+              y="10"
+              fill="white"
+              fontWeight="bold"
+              fontSize="10"
+              alignmentBaseline="middle"
+              textAnchor="middle"
+            >
+              {lastValue}
+            </Text>
+          </G>
         </Svg>
       )}
     </View>

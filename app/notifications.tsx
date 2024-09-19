@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, FlatList } from 'react-native'
 import { useRouter } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 import { useTheme } from '@react-navigation/native'
-import {  CustomTheme } from '@/constants/Colors'
+import { CustomTheme } from '@/constants/Colors'
 
 // Todo: use FlashList here
 
